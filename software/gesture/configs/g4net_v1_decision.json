@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "model_id": "g4net_v1",
+  "name": "cascade",
+  "note": "Calibrated by eye on live demo frames, 2026-10-15. Order is a priority list: the first matching step wins, so this is not the same as picking the strongest target above a threshold. Thresholds are strict (greater than). hand_back appears twice on purpose: above its threshold it wins outright, and below it it still wins whenever it is the strongest class of the four.",
+  "cascade": [
+    {"class": "hand_back", "min_score": 0.2},
+    {"class": "fist", "min_score": 0.1},
+    {"class": "hand_back", "must_be_max": true},
+    {"class": "palm_front", "min_score": 0.05}
+  ],
+  "fallback": "other",
+  "status": "unvalidated",
+  "status_note": "Chosen by eye on demo frames only. Must be re-checked on a held-out camera set before it counts as an acceptance rule; the offline validation split is a different domain."
+}

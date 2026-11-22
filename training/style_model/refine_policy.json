@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "name": "dreamsim_contentlight_weakgan_fixedperceptual_painting_anchoredhalo",
+  "baseline": "v2e_dreamsim_scratch_full_20261018/checkpoints_raw/step_007000.pt",
+  "weight_source": "median of baseline 25-step means over global steps 6000..7000 inclusive",
+  "gan_weight": 0.25,
+  "discriminator_lr_scale": 0.25,
+  "nce_a_scale": 0.02,
+  "nce_y_scale": 0.10,
+  "fixed_vgg_weights": [2130.8016528320313, 1539.6098388671876],
+  "fixed_dreamsim_weights": [2.3900938034057617, 2.2614359855651855],
+  "painting_colour_gradient_target": 0.10,
+  "halo_gradient_target": 0.05,
+  "aux_calibration_steps": 20,
+  "training_size": [256, 256],
+  "batch_size": 4,
+  "student_parameters": 9591,
+  "generator_lr": 0.00005,
+  "ema_decay": 0.995,
+  "auxiliary_state": "fresh D, PatchNCE projection heads and optimizers; baseline checkpoints contain generator only",
+  "note": "Hypothesis to validate; the warm-contrast loss does not teach circular stroke geometry."
+}

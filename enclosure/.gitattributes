@@ -1,0 +1,4 @@
+*.FCStd -text
+*.dxf -text
+*.step -text
+*.stl -text

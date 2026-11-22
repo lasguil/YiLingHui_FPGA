@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "model_config": "gpos_v1.json",
+  "seed": 20261015,
+  "split_ratio": {
+    "train": 0.9,
+    "val": 0.05,
+    "test": 0.05
+  },
+  "dataset_roots": [
+    {
+      "root": "手掌/palm",
+      "class_id": 0,
+      "source_dataset": "hagrid",
+      "source_subclass": "palm",
+      "semantic_pool": "palm",
+      "label_review_status": "auto"
+    },
+    {
+      "root": "其它/like",
+      "class_id": 1,
+      "source_dataset": "hagrid",
+      "source_subclass": "like",
+      "semantic_pool": "finger_up",
+      "label_review_status": "auto"
+    },
+    {
+      "root": "其它/one",
+      "class_id": 1,
+      "source_dataset": "hagrid",
+      "source_subclass": "one",
+      "semantic_pool": "finger_up",
+      "label_review_status": "auto"
+    },
+    {
+      "root": "其它/mute",
+      "class_id": 1,
+      "source_dataset": "hagrid",
+      "source_subclass": "mute",
+      "semantic_pool": "finger_up",
+      "label_review_status": "auto"
+    },
+    {
+      "root": "其它/dislike",
+      "class_id": 2,
+      "source_dataset": "hagrid",
+      "source_subclass": "dislike",
+      "semantic_pool": "thumb_down",
+      "label_review_status": "auto"
+    },
+    {
+      "root": "握拳/fist",
+      "class_id": 3,
+      "source_dataset": "hagrid",
+      "source_subclass": "fist",
+      "semantic_pool": "hagrid_hand",
+      "label_review_status": "auto"
+    },
+    {
+      "root": "手掌/stop",
+      "class_id": 3,
+      "source_dataset": "hagrid",
+      "source_subclass": "stop",
+      "semantic_pool": "hagrid_hand",
+      "label_review_status": "auto"
+    },
+    {
+      "root": "手背/stop_inverted",
+      "class_id": 3,
+      "source_dataset": "hagrid",
+      "source_subclass": "stop_inverted",
+      "semantic_pool": "hagrid_hand",
+      "label_review_status": "auto"
+    },
+    {
+      "root": "其它",
+      "class_id": 3,
+      "source_dataset": "hagrid",
+      "source_subclass_from_dir": true,
+      "semantic_pool": "hagrid_hand",
+      "exclude_subdirs": [
+        "like",
+        "one",
+        "mute",
+        "dislike"
+      ],
+      "drop_subdirs": [
+        "four"
+      ],
+      "label_review_status": "auto"
+    },
+    {
+      "root": "external_negatives",
+      "class_id": 3,
+      "source_dataset_from_dir": true,
+      "source_subclass_from_dir": true,
+      "semantic_pool": "external_negative",
+      "label_review_status": "source_attested"
+    }
+  ],
+  "sampling": {
+    "batch_size": 64,
+    "class_quota": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 28
+    },
+    "other_pool_quota": {
+      "hagrid_hand": 14,
+      "same_domain": 8,
+      "external_negative": 6
+    }
+  },
+  "augmentation": {
+    "horizontal_flip": 0.5,
+    "rotation_degrees": 0.0,
+    "zoom": [
+      1.0,
+      1.0
+    ],
+    "brightness": [
+      0.85,
+      1.15
+    ],
+    "contrast": [
+      0.85,
+      1.15
+    ],
+    "saturation": [
+      0.85,
+      1.15
+    ]
+  },
+  "optimizer": {
+    "name": "adamw",
+    "lr": 0.0001,
+    "weight_decay": 0.0001
+  },
+  "schedule": {
+    "steps_per_virtual_epoch": 500,
+    "warmup_virtual_epochs": 1,
+    "max_virtual_epochs": 80
+  },
+  "loss": {
+    "name": "heatmap_focal",
+    "position": {
+      "alpha": 2.0,
+      "beta": 4.0,
+      "sigma_cells": 0.5
+    }
+  },
+  "loader": {
+    "num_workers": 8,
+    "prefetch_factor": 4
+  },
+  "eval": {
+    "every_steps": 500,
+    "batch_size": 128,
+    "num_workers": 8
+  },
+  "checkpoint": {
+    "keep_best_presence": true,
+    "keep_best_centre": true,
+    "presence_recall_floor": 0.95
+  },
+  "class_order": [
+    "palm",
+    "finger_up",
+    "thumb_down",
+    "other"
+  ]
+}

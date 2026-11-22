@@ -1,0 +1,6 @@
+# Ti60F225_devkit cpu0.yaml copied from the local Sapphire OpenOCD package.
+# Match check: the second-board generated soc.v has one EfxSapphireSoc CPU and
+# routes JTAG_USER1 to EfxSapphireSoc.jtagCtrl_* / hardJtag_debug_logic; the
+# generated CPU report for this same Ti60F225 Sapphire configuration reports
+# zero hardware breakpoints.
+debug: !!vexriscv.DebugReport {hardwareBreakpointCount: 0}

@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "model_id": "g4net_v3",
+  "name": "target_priority",
+  "rule": 0.3,
+  "status": "placeholder",
+  "status_note": "PLACEHOLDER THRESHOLD, not calibrated, and the v2 value does not carry over: the input geometry changed, so the score distribution changed with it. Single knob: predict the strongest target when its score reaches `rule`, otherwise other."
+}

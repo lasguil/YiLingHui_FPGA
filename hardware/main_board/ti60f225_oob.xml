@@ -1,0 +1,236 @@
+<efx:project xmlns:efx="http://www.efinixinc.com/enf_proj" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="ti60f225_oob" description="" sw_version="2026.1.132" xsi:schemaLocation="http://www.efinixinc.com/enf_proj enf_proj.xsd">
+    <efx:device_info>
+        <efx:family name="Titanium" />
+        <efx:device name="Ti60F225" />
+        <efx:timing_model name="I3" />
+    </efx:device_info>
+    <efx:design_info def_veri_version="sv_09" def_vhdl_version="vhdl_2008" unified_flow="false" partition_interface_allowed_off_perimeter="true">
+        <efx:top_module name="ti60f225_oob_top" />
+        <efx:design_file name="rtl/wave_roi_stats.sv" version="default" library="default" />
+        <efx:design_file name="rtl/wave_pulse_detector.sv" version="default" library="default" />
+        <efx:design_file name="rtl/camera_cpu_csr.sv" version="default" library="default" />
+        <efx:design_file name="rtl/demo_model_asset_pkg.sv" version="default" library="default" />
+        <efx:design_file name="rtl/demo_bus_pkg.sv" version="default" library="default" />
+        <efx:design_file name="rtl/demo_diag_uart.sv" version="default" library="default" />
+        <efx:design_file name="rtl/ti60f225_oob_top.v" version="default" library="default" />
+        <efx:design_file name="rtl/dual_clock_fifo.v" version="default" library="default" />
+        <efx:design_file name="rtl/reset.v" version="default" library="default" />
+        <efx:design_file name="rtl/simple_dual_port_ram.v" version="default" library="default" />
+        <efx:design_file name="rtl/ddr3_controller/ddr3_top.v" version="default" library="default" />
+        <efx:design_file name="rtl/ddr3_controller/axi4_bus_ctl/axi4_bus_ctl.v" version="default" library="default" />
+        <efx:design_file name="rtl/ddr_rewrite/axi4_bus_ctl_stream.sv" version="default" library="default" />
+        <efx:design_file name="rtl/ddr_rewrite/slim/local_bus_ctl_slim.sv" version="default" library="default" />
+        <efx:design_file name="rtl/ddr_rewrite/slim/memory_bus_ctl_slim.sv" version="default" library="default" />
+        <efx:design_file name="rtl/ddr3_controller/phy_ctl/ddr_phy_wrlvl.v" version="default" library="default" />
+        <efx:design_file name="rtl/ddr3_controller/phy_ctl/ddr_phy_rdlvl_dqs.v" version="default" library="default" />
+        <efx:design_file name="rtl/ddr3_controller/phy_ctl/ddr_phy_wrcal.v" version="default" library="default" />
+        <efx:design_file name="rtl/ddr3_controller/phy_ctl/ddr_calibration_ini.v" version="default" library="default" />
+        <efx:design_file name="rtl/ddr3_controller/phy_ctl/ddr_phy_if.v" version="default" library="default" />
+        <efx:design_file name="rtl/ddr3_controller/phy_ctl/phy_ctl.v" version="default" library="default" />
+        <efx:design_file name="rtl/ddr3_controller/phy_ctl/ddr_mpr_rdlvl.v" version="default" library="default" />
+        <efx:design_file name="rtl/ddr3_controller/ddr3_parameter.vh" version="default" library="default" />
+        <efx:design_file name="rtl/ddr_rewrite/lb2_axi_clk_stream.sv" version="default" library="default" />
+        <efx:design_file name="rtl/ddr_rewrite/ddr_slim_fifo.sv" version="default" library="default" />
+        <efx:design_file name="rtl/ddr3_controller/common/efx_fifo_v2.3/efx_fifo_wrapper.v" version="default" library="default" />
+        <efx:design_file name="rtl/frame_buffer/frame_buffer_axi_white.v" version="default" library="default" />
+        <efx:design_file name="rtl/tmds_encode.v" version="default" library="default" />
+        <efx:design_file name="rtl/csi4_to_pix1.v" version="default" library="default" />
+        <efx:design_file name="rtl/isp_coord.v" version="default" library="default" />
+        <efx:design_file name="rtl/isp_blc.v" version="default" library="default" />
+        <efx:design_file name="rtl/isp_window3.v" version="default" library="default" />
+        <efx:design_file name="rtl/isp_demosaic_3x3.v" version="default" library="default" />
+        <efx:design_file name="rtl/isp_ccm.v" version="default" library="default" />
+        <efx:design_file name="rtl/isp_gamma.v" version="default" library="default" />
+        <efx:design_file name="rtl/sensor_ae_stats.v" version="default" library="default" />
+        <efx:design_file name="rtl/isp_top.v" version="default" library="default" />
+        <efx:design_file name="rtl/isp_hfilter_resize.v" version="default" library="default" />
+        <efx:design_file name="rtl/display/display_cfg_csr.sv" version="default" library="default" />
+        <efx:design_file name="rtl/display/display_ui_catalog_ram.sv" version="default" library="default" />
+        <efx:design_file name="rtl/ch9350_uart_rx_csr.sv" version="default" library="default" />
+        <efx:design_file name="rtl/display/display_axi_line_cache.sv" version="default" library="default" />
+        <efx:design_file name="rtl/display/display_axi_shared_reader.sv" version="default" library="default" /><efx:design_file name="rtl/display/pipeline_luna_ui_text_rom.sv" version="default" library="default" />
+        <efx:design_file name="rtl/display/pipeline_luna_ui_glyph_rom.sv" version="default" library="default" />
+        <efx:design_file name="rtl/display/display_renderer.sv" version="default" library="default" />
+        <efx:design_file name="rtl/display/display_system_top.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/ipx/ipx_types.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/top/ngm_npu_types.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/integration/ipx_npu_write_bridge.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/integration/style_link_regs.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/ipx/ipx_ai_mix.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/ipx/ipx_axi_master.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/ipx/ipx_crop.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/ipx/ipx_curve.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/ipx/ipx_dma.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/ipx/ipx_fifo8.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/ipx/ipx_finish.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/ipx/ipx_mult.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/ipx/ipx_ram.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/ipx/ipx_regs.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/ipx/ipx_saturation.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/ipx/ipx_stream_source.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/ipx/ipx_top.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/ipx/ipx_write_queue.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/cells/ngm_dual_mac_pair.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/cells/ngm_pe_12mac.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/cells/ngm_residual_add.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/cells/ngm_rq16_lane.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/cells/ngm_rq16_mult.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/cluster/ngm_compute_cluster.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/cluster/ngm_mac_array_16x12.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/cluster/ngm_operand_former.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/cluster/ngm_requant_ppu.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/cluster/ngm_residual_bank.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/cluster/ngm_weight_slots.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/ctrl/ngm_descriptor_store.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/ctrl/ngm_frame_sequencer.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/ctrl/ngm_residual_schedule.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/ctrl/ngm_row_sequencer.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/ctrl/ngm_strip_sequencer.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/ctrl/ngm_window_source.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/datapath/ngm_sigmoid_lut.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/host/ngm_axi_master.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/host/ngm_host_if.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/host/ngm_input_dma.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/host/ngm_npu_regs.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/host/ngm_output_dma.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/host/ngm_perf_counters.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/host/ngm_rgb_pair_source.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/host/ngm_weight_dma.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/host/ngm_x0_dma.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/mem/ngm_act_ram.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/mem/ngm_addr_map.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/mem/ngm_bank_ctrl_ab.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/mem/ngm_bank_ctrl_c.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/mem/ngm_bank_ctrl_d.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/mem/ngm_d_dual128_ram.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/mem/ngm_memory_subsystem.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/mem/ngm_result_former.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/mem/ngm_weight_ram.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/row/ngm_conv_row_engine.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/row/ngm_point_engine.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/row/ngm_tap_window.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/top/ngm_npu_compute_path.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/top/ngm_npu_task_control.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/top/ngm_npu_top.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/npu/top/ngm_npu_transfer_path.sv" version="default" library="default" />
+        <efx:design_file name="rtl/accelerator/style_pipeline_top.sv" version="default" library="default" />
+        <efx:design_file name="rtl/soc/soc.v" version="default" library="default" />
+        <efx:design_file name="rtl/demo_npu_read_buffer.sv" version="default" library="default" />
+        <efx:design_file name="rtl/demo_axi_merge.sv" version="default" library="default" />
+        <efx:design_file name="rtl/style_reg_master.sv" version="default" library="default" />
+        <efx:design_file name="rtl/demo_model_boot.sv" version="default" library="default" />
+        <efx:design_file name="rtl/style_frame_executor.sv" version="default" library="default" />
+        <efx:design_file name="rtl/style_cpu_control.sv" version="default" library="default" />
+        <efx:design_file name="ip/csi_rx_controller/csi_phy_control_vendor.sv" version="default" library="default" />
+        <efx:top_vhdl_arch name="" />
+        <efx:msg_config name="" />
+        <efx:partition_definitions name="" />
+        <efx:partition_interface_assignments name="" />
+    </efx:design_info>
+    <efx:interface_info>
+        <efx:default_peri_file name="ti60f225_oob.peri.xml" />
+        <efx:peri_file name="ti60f225_oob.peri.xml" />
+    </efx:interface_info>
+    <efx:constraint_info>
+        <efx:sdc_file name="ti60f225_oob.sdc" />
+        <efx:inter_file name="" />
+    </efx:constraint_info>
+    <efx:sim_info />
+    <efx:misc_info />
+    <efx:ooc_info />
+    <efx:ip_info>
+        <efx:ip instance_name="csi_rx_controller" path="ip/csi_rx_controller/settings.json" ooc="false">
+            <efx:ip_src_file name="csi_rx_controller.sv" />
+        </efx:ip>
+    </efx:ip_info>
+    <efx:synthesis tool_name="efx_map">
+        <efx:param name="work_dir" value="build/work_syn" value_type="e_string" />
+        <efx:param name="write_efx_verilog" value="on" value_type="e_bool" />
+        <efx:param name="mode" value="speed2" value_type="e_option" />
+        <efx:param name="max_ram" value="-1" value_type="e_integer" />
+        <efx:param name="max_mult" value="-1" value_type="e_integer" />
+        <efx:param name="infer-clk-enable" value="3" value_type="e_option" />
+        <efx:param name="infer-sync-set-reset" value="1" value_type="e_option" />
+        <efx:param name="fanout-limit" value="0" value_type="e_integer" />
+        <efx:param name="seq_opt" value="1" value_type="e_option" />
+        <efx:param name="retiming" value="0" value_type="e_option" />
+        <efx:param name="dsp-mac-packing" value="1" value_type="e_option" />
+        <efx:param name="dsp-input-regs-packing" value="1" value_type="e_option" />
+        <efx:param name="dsp-output-regs-packing" value="1" value_type="e_option" />
+        <efx:param name="bram_output_regs_packing" value="1" value_type="e_option" />
+        <efx:param name="blast_const_operand_adders" value="1" value_type="e_option" />
+        <efx:param name="operator-sharing" value="0" value_type="e_option" />
+        <efx:param name="optimize-adder-tree" value="0" value_type="e_option" />
+        <efx:param name="pack-luts-to-comb4" value="0" value_type="e_option" />
+        <efx:param name="min-sr-fanout" value="0" value_type="e_integer" />
+        <efx:param name="min-ce-fanout" value="0" value_type="e_integer" />
+        <efx:param name="seq-opt-sync-only" value="0" value_type="e_option" />
+        <efx:param name="blackbox-error" value="1" value_type="e_option" />
+        <efx:param name="allow-const-ram-index" value="0" value_type="e_option" />
+        <efx:param name="hdl-compile-unit" value="1" value_type="e_option" />
+        <efx:param name="create-onehot-fsms" value="0" value_type="e_option" />
+        <efx:param name="mult-decomp-retime" value="0" value_type="e_option" />
+        <efx:param name="optimize-zero-init-rom" value="1" value_type="e_option" />
+        <efx:param name="insert-carry-skip" value="0" value_type="e_option" />
+        <efx:param name="mult-auto-pipeline" value="0" value_type="e_option" />
+        <efx:param name="use-logic-for-small-mem" value="64" value_type="e_integer" />
+        <efx:param name="use-logic-for-small-rom" value="64" value_type="e_integer" />
+        <efx:param name="bram-push-tco-outreg" value="0" value_type="e_option" />
+        <efx:param name="include" value="ip/csi_rx_controller" value_type="e_string" />
+        <efx:param name="include" value="rtl" value_type="e_string" />
+        <efx:param name="hdl-loop-limit" value="20000" value_type="e_integer" />
+        <efx:param name="enable-mark-debug" value="1" value_type="e_option" />
+        <efx:param name="max-bit-blast-mem-size" value="10240" value_type="e_integer" />
+        <efx:param name="peri-syn-instantiation" value="0" value_type="e_option" />
+        <efx:param name="peri-syn-inference" value="0" value_type="e_option" />
+        <efx:param name="ram-decomp-mode" value="0" value_type="e_option" />
+        <efx:param name="max_threads" value="-1" value_type="e_integer" />
+        <efx:param name="suppress_info_msgs" value="off" value_type="e_bool" />
+        <efx:param name="suppress_warning_msgs" value="off" value_type="e_bool" />
+        <efx:param name="include" value="rtl/soc" value_type="e_string" />
+    </efx:synthesis>
+    <efx:place_and_route tool_name="efx_pnr">
+        <efx:param name="work_dir" value="build/work_pnr" value_type="e_string" />
+        <efx:param name="verbose" value="off" value_type="e_bool" />
+        <efx:param name="optimization_level" value="TIMING_3" value_type="e_option" />
+        <efx:param name="seed" value="2" value_type="e_integer" />
+        <efx:param name="placer_effort_level" value="5" value_type="e_option" />
+        <efx:param name="max_threads" value="-1" value_type="e_integer" />
+        <efx:param name="beneficial_skew" value="on" value_type="e_option" />
+        <efx:param name="print_critical_path" value="500" value_type="e_integer" />
+        <efx:param name="suppress_info_msgs" value="off" value_type="e_bool" />
+        <efx:param name="suppress_warning_msgs" value="off" value_type="e_bool" />
+    </efx:place_and_route>
+    <efx:bitstream_generation tool_name="efx_pgm">
+        <efx:param name="mode" value="active" value_type="e_option" />
+        <efx:param name="width" value="1" value_type="e_option" />
+        <efx:param name="cold_boot" value="off" value_type="e_bool" />
+        <efx:param name="cascade" value="off" value_type="e_option" />
+        <efx:param name="enable_roms" value="on" value_type="e_option" />
+        <efx:param name="spi_low_power_mode" value="off" value_type="e_bool" />
+        <efx:param name="io_weak_pullup" value="on" value_type="e_bool" />
+        <efx:param name="oscillator_clock_divider" value="DIV8" value_type="e_option" />
+        <efx:param name="enable_crc_check" value="on" value_type="e_bool" />
+        <efx:param name="bitstream_compression" value="on" value_type="e_bool" />
+        <efx:param name="active_capture_clk_edge" value="posedge" value_type="e_option" />
+        <efx:param name="release_tri_then_reset" value="on" value_type="e_bool" />
+        <efx:param name="enable_external_master_clock" value="off" value_type="e_bool" />
+        <efx:param name="jtag_usercode" value="0xFFFFFFFF" value_type="e_string" />
+        <efx:param name="generate_bit" value="on" value_type="e_bool" />
+        <efx:param name="generate_bitbin" value="off" value_type="e_bool" />
+        <efx:param name="generate_hex" value="on" value_type="e_bool" />
+        <efx:param name="generate_hexbin" value="off" value_type="e_bool" />
+    </efx:bitstream_generation>
+    <efx:debugger>
+        <efx:param name="work_dir" value="work_dbg" value_type="e_string" />
+        <efx:param name="auto_instantiation" value="off" value_type="e_bool" />
+        <efx:param name="profile" value="" value_type="e_string" />
+    </efx:debugger>
+    <efx:security>
+        <efx:param name="enable_bitstream_encrypt" value="off" value_type="e_bool" />
+        <efx:param name="enable_bitstream_auth" value="off" value_type="e_bool" />
+        <efx:param name="encryption_key_file" value="NONE" value_type="e_string" />
+        <efx:param name="auth_key_file" value="NONE" value_type="e_string" />
+        <efx:param name="randomize_iv_value" value="off" value_type="e_bool" />
+    </efx:security>
+</efx:project>

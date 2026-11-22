@@ -1,0 +1,49 @@
+{
+  "format": "v2e_rq16_weight_bundle",
+  "slot_bytes": 16384,
+  "slot_count": 3,
+  "style_order": [
+    "copper_relief",
+    "nobel_e",
+    "fst_mosaic"
+  ],
+  "bundle_bytes": 49152,
+  "bundle_sha256": "9722908e8f73bbd4a6d7f4f359d14b839ae3c23d9022b930e6ada53cb00badf5",
+  "bundle_crc16_ccitt_false": "28c6",
+  "padding": "0xff",
+  "slots": [
+    {
+      "slot": 0,
+      "slug": "copper_relief",
+      "name_cn": "铜浮雕",
+      "ui_label": "COPPER",
+      "source_package": "27_copper_relief",
+      "weight_table_sha256": "d165368fe6ca991470c6fa84aa4941adf435464b0ed114e24866041d93719ae7",
+      "slot_sha256": "90a9c9f75b6bde8b9b534cad61b1a8b2be999ba2589004b2fa520a467698b0a4",
+      "slot_crc16_ccitt_false": "0788",
+      "descriptor_manifest_sha256": "ce4ca8a4ff2f9fb95dcdef17b403f755b8f3db7e93cb02e12119c9fa0315818a"
+    },
+    {
+      "slot": 1,
+      "slug": "nobel_e",
+      "name_cn": "诺贝尔金箔",
+      "ui_label": "NOBEL",
+      "source_package": "28_nobel_e",
+      "weight_table_sha256": "9491aac95c6bd477aead5ef92a4ad298c817f653ccdeb6629976c5360eb39601",
+      "slot_sha256": "f71678e23adc3d6e875710b0a962699360e28bc8c54d672628d4a3801f791c47",
+      "slot_crc16_ccitt_false": "3115",
+      "descriptor_manifest_sha256": "ee7e62672f63e01cfd1ed6d3d7ebe4aac192723f46b26e5cc070c54b8b2e7853"
+    },
+    {
+      "slot": 2,
+      "slug": "fst_mosaic",
+      "name_cn": "彩色玻璃马赛克",
+      "ui_label": "MOSAIC",
+      "source_package": "29_fst_mosaic",
+      "weight_table_sha256": "79eacc1d0a8a3f9d5c287931a956ce75ba76aad48bf337ffa2de7c6efa034e83",
+      "slot_sha256": "8e92b7d27e5b71839d5af06c7389c70c0eae0ce9b060fff78eee2636f0677025",
+      "slot_crc16_ccitt_false": "1efd",
+      "descriptor_manifest_sha256": "e8e4c49cb6104e657dae49487b683243299fb97f6705fb2bee659b772dce1273"
+    }
+  ]
+}

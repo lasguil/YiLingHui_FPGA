@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "model_id": "g4net_v3",
+  "input": {
+    "channels": 3,
+    "height": 192,
+    "width": 192
+  },
+  "preprocessing": {
+    "color": "RGB",
+    "resize": "bilinear_letterbox",
+    "dimension_rounding": "floor(x + 0.5)",
+    "pad_value": 128,
+    "normalization": "(pixel - 128) / 128",
+    "input_int8_scale": 0.0078125,
+    "input_int8_zero_point": 0
+  },
+  "classes": [
+    {
+      "id": 0,
+      "key": "fist",
+      "name": "握拳",
+      "directories": [
+        "握拳/fist"
+      ]
+    },
+    {
+      "id": 1,
+      "key": "finger_up",
+      "name": "一根手指朝上",
+      "directories": [
+        "其它/like",
+        "其它/one",
+        "其它/mute"
+      ]
+    },
+    {
+      "id": 2,
+      "key": "thumb_down",
+      "name": "拇指朝下",
+      "directories": [
+        "其它/dislike"
+      ]
+    },
+    {
+      "id": 3,
+      "key": "other",
+      "name": "其他",
+      "directories": [
+        "其它"
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "name": "stem",
+      "type": "conv",
+      "out_channels": 16,
+      "kernel": 3,
+      "stride": 2
+    },
+    {
+      "name": "ds1",
+      "type": "dsconv",
+      "out_channels": 24,
+      "kernel": 3,
+      "stride": 2
+    },
+    {
+      "name": "ds2",
+      "type": "dsconv",
+      "out_channels": 24,
+      "kernel": 3,
+      "stride": 1
+    },
+    {
+      "name": "ds3",
+      "type": "dsconv",
+      "out_channels": 32,
+      "kernel": 3,
+      "stride": 2
+    },
+    {
+      "name": "ds4",
+      "type": "dsconv",
+      "out_channels": 32,
+      "kernel": 3,
+      "stride": 1
+    },
+    {
+      "name": "ds5",
+      "type": "dsconv",
+      "out_channels": 48,
+      "kernel": 3,
+      "stride": 2
+    },
+    {
+      "name": "ds6",
+      "type": "dsconv",
+      "out_channels": 48,
+      "kernel": 3,
+      "stride": 1
+    },
+    {
+      "name": "ds7",
+      "type": "dsconv",
+      "out_channels": 64,
+      "kernel": 3,
+      "stride": 2
+    },
+    {
+      "name": "ds8",
+      "type": "dsconv",
+      "out_channels": 64,
+      "kernel": 3,
+      "stride": 1
+    },
+    {
+      "name": "ds9",
+      "type": "dsconv",
+      "out_channels": 64,
+      "kernel": 3,
+      "stride": 1
+    },
+    {
+      "name": "head",
+      "type": "conv",
+      "out_channels": 96,
+      "kernel": 1,
+      "stride": 1
+    }
+  ],
+  "classifier": {
+    "out_features": 4
+  },
+  "activation": "ReLU6",
+  "training_normalization": "BatchNorm2d",
+  "deployment_normalization": "fold_into_conv"
+}

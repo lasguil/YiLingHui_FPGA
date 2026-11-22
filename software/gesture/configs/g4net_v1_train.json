@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "seed": 20261015,
+  "split_ratio": {"train": 0.9, "val": 0.05, "test": 0.05},
+  "overrides": ["small_hand_overrides.jsonl"],
+  "small_hand_rule": {
+    "table": "hand_bbox_areas.jsonl",
+    "max_area": 0.03,
+    "detector": "models/teacher_hagrid/YOLOv10n_hands.pt",
+    "note": "max_area is hand area as a fraction of the 512x512 frame, measured by the in-repo detector. Chosen by eye on the model-input contact sheet (tools/render_hand_size_sheet.py): at 0.03 the hand is about 25 px in the 256x144 input and no longer readable. 0.03 = 1675 images = 4.8% of the target classes."
+  },
+  "dataset_roots": [
+    {"root": "手掌/palm", "class_id": 0, "source_dataset": "hagrid",
+     "source_subclass": "palm", "semantic_pool": "palm_front", "label_review_status": "auto"},
+    {"root": "手掌/stop", "class_id": 0, "source_dataset": "hagrid",
+     "source_subclass": "stop", "semantic_pool": "palm_front", "label_review_status": "auto"},
+    {"root": "其它/four", "class_id": 0, "source_dataset": "hagrid",
+     "source_subclass": "four", "semantic_pool": "palm_front", "label_review_status": "auto"},
+    {"root": "手背/stop_inverted", "class_id": 1, "source_dataset": "hagrid",
+     "source_subclass": "stop_inverted", "semantic_pool": "hand_back", "label_review_status": "auto"},
+    {"root": "握拳/fist", "class_id": 2, "source_dataset": "hagrid",
+     "source_subclass": "fist", "semantic_pool": "fist", "label_review_status": "auto"},
+    {"root": "其它", "class_id": 3, "source_dataset": "hagrid",
+     "source_subclass_from_dir": true, "semantic_pool": "hagrid_hand",
+     "exclude_subdirs": ["four"], "label_review_status": "auto"},
+    {"root": "external_negatives", "class_id": 3,
+     "source_dataset_from_dir": true, "source_subclass_from_dir": true,
+     "semantic_pool": "external_negative", "label_review_status": "source_attested"}
+  ],
+  "sampling": {
+    "batch_size": 64,
+    "class_quota": {"0": 12, "1": 12, "2": 12, "3": 28},
+    "other_pool_quota": {"hagrid_hand": 14, "same_domain": 8, "external_negative": 6}
+  },
+  "augmentation": {
+    "horizontal_flip": 0.5,
+    "rotation_degrees": 10.0,
+    "zoom": [0.9, 1.1],
+    "brightness": [0.85, 1.15],
+    "contrast": [0.85, 1.15],
+    "saturation": [0.85, 1.15]
+  },
+  "optimizer": {"name": "adamw", "lr": 0.0003, "weight_decay": 0.0001},
+  "schedule": {
+    "steps_per_virtual_epoch": 500,
+    "warmup_virtual_epochs": 5,
+    "max_virtual_epochs": 80
+  },
+  "loss": {"name": "cross_entropy", "focal_gamma": 0.0, "focal_alpha": 1.0},
+  "loader": {"num_workers": 8, "prefetch_factor": 4},
+  "eval": {"every_steps": 500, "batch_size": 128, "num_workers": 8},
+  "checkpoint": {
+    "keep_best_macro_f1": true,
+    "keep_best_deploy_tradeoff": true,
+    "target_recall_floor": 0.8
+  }
+}

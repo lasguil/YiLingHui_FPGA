@@ -1,0 +1,6 @@
+/outflow/
+/build/
+/tmp/
+/software/build/
+/software/artifacts/
+*.log

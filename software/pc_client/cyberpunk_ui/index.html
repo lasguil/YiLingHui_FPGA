@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#020303"><title>Ti60 视觉终端</title><link rel="stylesheet" href="/style.css"><style>
+/* 安卓差异补丁：视频用 MJPEG img；窄屏 sticky+折叠 */
+.viewer img{width:100%;height:100%;object-fit:contain;position:absolute}
+.viewer img[hidden]{display:none!important}
+@media(max-width:780px){
+  #videoPane{position:sticky;top:44px;z-index:4;margin-bottom:12px}
+  .panel-head{flex-wrap:wrap;gap:8px}
+  .panel-head h2{white-space:nowrap}
+  .style-row,.lut-grid{grid-template-columns:repeat(3,1fr)}
+  .mode-grid{grid-template-columns:repeat(2,1fr)}
+}
+.tabs{display:none}
+@media(max-width:920px){
+  .tabs{display:flex;position:sticky;top:0;z-index:6;background:var(--ground);border-bottom:1px solid var(--line);padding:8px 0;gap:6px}
+  .tabs button{flex:1;border:1px solid var(--line);background:var(--plate);color:var(--inkb);padding:9px 4px;font:12px var(--font-mono,monospace)}
+  .tabs button.on{border-color:var(--accent);color:var(--accent);background:#0a2013}
+  #paneCtl,#paneAgent,#paneDiag{display:none}
+  #paneCtl.on,#paneAgent.on,#paneDiag.on{display:block}
+  #videoPane{position:sticky;top:46px;z-index:5;margin-bottom:12px}
+}
+@media(max-width:600px){
+  .preview-title{white-space:nowrap}.preview-head{flex-wrap:wrap;gap:6px}.preview-actions{margin-left:0}.tag{white-space:nowrap}
+  .style-row,.lut-grid{grid-template-columns:repeat(2,1fr)}
+  .shell{padding:0 12px}
+  .shell::before{left:6px}
+}
+
+/* 安卓补丁：复用桌面 CSS 后缺失的类 */
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.row .btn{padding:8px 12px;font:12px var(--fm)}
+.switch{display:flex;align-items:center;gap:8px;font:12px var(--fm);color:var(--inkb);cursor:pointer}
+.switch input{width:auto;accent-color:var(--accent)}
+.preview-slider{display:flex;gap:10px;align-items:center;margin-top:11px}
+.preview-slider label{font:12px var(--fm);color:var(--ink-muted);white-space:nowrap}
+.preview-slider .row{gap:6px}
+.slider-row{margin-top:12px}
+.slider-row label{font:12px var(--font-mono,monospace);color:var(--ink-body);display:block;margin-bottom:5px}
+.agent-settings{border-top:1px solid var(--line);margin-top:12px;padding-top:10px}
+.agent-settings input,.agent-settings select{background:var(--plate2);border:1px solid var(--ctrl);padding:8px 10px;font:12px var(--font-mono,monospace);color:var(--ink)}
+.field-label{font-family:var(--font-mono,monospace)}
+</style></head>
+<body><div class="shell">
+  <header class="topbar"><a class="brand" href="#"><span class="mark">Ti</span><span><b>Ti60 VISION</b><small>PC CONTROL CONSOLE</small></span></a><div class="head-right"><span class="link-pill" id="state-pill"><i></i> <span id="state">正在连接…</span></span></div></header>
+  <nav class="tabs" id="tabs">
+    <button data-tab="paneCtl" class="on">调色控制</button>
+    <button data-tab="paneAgent">Agent</button>
+    <button data-tab="paneDiag">链路诊断</button>
+  </nav>
+  <main class="layout">
+    <section class="workbench">
+      <div class="preview-card">
+        <div class="preview-head"><div class="preview-title"><span class="live-dot"></span><b>实时画面预览</b><span class="tag">MJPEG</span><span class="tag">Ti60F225I3</span></div><div class="preview-actions"><select id="video-mode" class="head-select" title="输入模式"><option value="video_mode_0">输入模式 0</option><option value="video_mode_1">输入模式 1</option><option value="video_mode_2">输入模式 2</option><option value="video_mode_3">输入模式 3</option></select><button class="square-btn" id="full" title="全屏">⛶</button><button class="square-btn" id="snapshot" title="保存快照">⤓</button><button class="square-btn" id="export" title="导出统计">⇩</button></div></div>
+        <div class="canvas-wrap"><div id="empty">等待完整 JPEG<br><small>连接板2 Wi-Fi 并接收真实 MJPEG 帧</small></div><img id="video" alt="板2实时视频" style="display:none"><div class="canvas-caption"><span>板2 MJPEG · 固定 1280×720/30fps</span><span id="age">尚无画面</span></div></div>
+        <div class="preview-slider" id="wipe-row"><label>对比分割线</label><div class="row"><button class="btn" data-action="out_minus">◀</button><button class="btn" data-action="out_plus">▶</button></div><span class="small-muted">板端步进调整</span></div>
+      </div>
+      <div class="control-grid" id="paneCtl">
+        <article class="panel"><div class="panel-head"><div><span class="eyebrow">STYLE ENGINE</span><h2>AI 风格</h2></div><span class="status-chip">NPU × 26</span></div><label class="field-label">风格模型 <span>model_prev/next 相对切换（板端无读回）</span></label><div class="style-row" id="style-row"></div><div class="slider-row"><label>AI 风格强度（±5% 步进）</label><div class="row"><button class="btn" data-action="ai_minus">AI −5%</button><button class="btn" data-action="ai_plus">AI +5%</button></div></div></article>
+        <article class="panel"><div class="panel-head"><div><span class="eyebrow">LUT × COLOR MODE</span><h2>调色表 × 颜色模式</h2></div><span class="status-chip">LUT × 13</span></div><label class="field-label">调色表 <span>13 张 · 相对切换（无读回）</span></label><div class="lut-grid" id="lut-grid"></div><label class="field-label">颜色模式 <span>COLOR0..3 绝对切换</span></label><div class="mode-grid"><button class="mode-btn" data-action="color_curve"><b>RGB 曲线</b><small>逐通道</small></button><button class="mode-btn" data-action="color_gray"><b>灰度配色</b><small>渐变映射</small></button><button class="mode-btn" data-action="color_duotone"><b>双调网点</b><small>端点半调</small></button><button class="mode-btn" data-action="color_dots"><b>彩色网点</b><small>逐通道半调</small></button></div><label class="field-label">调色表 <span>table_prev/next 相对切换</span></label><div class="row"><button class="btn" data-action="table_prev">◀ 上一张</button><button class="btn" data-action="table_next">下一张 ▶</button></div><div class="slider-row"><label>饱和度（±5% 步进）</label><div class="row"><button class="btn" data-action="sat_minus">饱和度 −5%</button><button class="btn" data-action="sat_plus">饱和度 +5%</button></div></div><div class="keep-block"><label class="switch"><input type="checkbox" id="keepToggle">Keep Color 局部保色 <span class="small-muted">KEEP_TOGGLE 绝对开关</span></label><p class="small-muted" style="margin:6px 0 0">固定色取色：在板端 KEEP 页触摸画面完成（远程取色流程待接）。</p></div></article>
+      </div>
+    </section>
+    <aside class="side-column">
+      <section class="panel chat-card" id="paneAgent"><div class="chat-head"><div><span class="eyebrow">AGENT CONSOLE</span><h2>和易灵绘对话</h2></div><span id="mode-status" class="mode-badge">离线规则</span></div><div class="chat-body" id="chat-body"><div class="message assistant"><span class="bot-avatar">&gt;</span><div class="bubble"><b>你好，我是易灵绘 Agent。</b><p>描述想要的效果，或点「[◉] 画面扫描」让我基于当前画面推荐组合。</p><small>计划先预览，确认后逐条下发（每步等 accepted）。</small></div></div></div>
+        <div class="scene-bar"><button class="scene-btn" id="agentScene" disabled title="当前PC后端未实现此功能">[◉] 画面扫描 · 当前PC端未接入</button><span class="small-muted" id="scene-status">此能力暂在 Android 端</span></div>
+        <div class="vision-toggle">当前页面只开放 PC 后端已支持的真实设备控制与 Agent API</div>
+        <form id="chat-form" class="composer"><textarea id="agentText" rows="2" maxlength="1200" placeholder="描述你想要的画面变化…"></textarea><button id="send" type="submit">↑</button></form>
+        <div class="chat-note"><span>计划生成后于下方确认执行</span><span>Key 仅存进程内存</span></div>
+        <div class="row" style="margin-top:8px"><button class="btn" id="agentPlan" type="button">生成计划</button><button class="btn primary" id="agentExecute" type="button" disabled>确认执行</button></div>
+        <pre id="agentPreview" style="margin:8px 0 0;white-space:pre-wrap;word-break:break-word;font:12px/1.5 var(--font-mono,monospace);color:var(--ink-muted);max-height:140px;overflow:auto"></pre>
+        <div class="agent-settings"><label class="field-label">计划模式</label><div class="row"><select id="agentMode" style="flex:1"><option value="offline">离线规则（不是 LLM）</option><option value="deepseek">DeepSeek 云端</option></select><input id="agentModel" value="deepseek-chat" maxlength="80" style="flex:1"></div><input id="agentKey" type="password" autocomplete="off" maxlength="500" placeholder="DeepSeek API Key（仅内存，不落盘）" style="margin-top:6px"><div class="row" style="margin-top:8px"><button class="btn" id="agentConfig">应用模式设置</button></div></div>
+      </section>
+      <section class="panel scene-panel" id="paneDiag"><div class="panel-head"><div><span class="eyebrow">SCENE INSIGHT</span><h2>画面读数</h2></div><span class="small-muted" id="scene-state">等待「画面扫描」</span></div>
+        <div class="meter-row"><label>亮度</label><div class="meter"><div class="meter-fill" id="mB"></div></div><output id="mBv">—</output></div>
+        <div class="meter-row"><label>对比</label><div class="meter"><div class="meter-fill" id="mC"></div></div><output id="mCv">—</output></div>
+        <div class="meter-row"><label>饱和</label><div class="meter"><div class="meter-fill" id="mS"></div></div><output id="mSv">—</output></div>
+        <div class="meter-row"><label>冷暖</label><div class="meter warm"><div class="meter-fill" id="mW"></div></div><output id="mWv">—</output></div>
+        <div class="swatches" id="sw"><span class="small-muted">主色显示在这里</span></div>
+      </section>
+      <section class="panel trace-panel"><div class="panel-head"><div><span class="eyebrow">LINK DIAG</span><h2>链路诊断</h2></div><span class="connected-dot"><i></i><span id="ctl">—</span></span></div>
+        <div class="statgrid"><div class="metric"><strong id="fps">—</strong><small>完整接收 fps</small></div><div class="metric"><strong id="mbps">—</strong><small>UDP Mbps</small></div><div class="metric"><strong id="pps">—</strong><small>UDP 包/秒</small></div></div>
+        <p class="muted" id="detail"></p>
+        <details class="uart-details"><summary>板端寄存器</summary><div id="regs">未读取</div></details>
+        <details class="uart-details"><summary>连接设置 <span>板 IPv4 / 视频端口 / 组帧超时</span></summary>
+          <div class="row" style="margin-top:8px"><input id="board" value="192.168.0.2" inputmode="decimal" readonly title="由PC接收器启动参数管理" style="flex:1"><input id="port" type="number" value="5001" readonly title="本机视频接收端口" style="width:84px"><input id="timeout" type="number" value="100" readonly title="组帧空隙阈值(ms)" style="width:70px"></div>
+          <div class="row" style="margin-top:8px"><span style="flex:1;color:var(--ink-muted)">实板接收由 PC 接收器管理</span><button class="btn primary" id="start">刷新状态</button></div>
+          <p id="error" style="color:var(--mag);font:12px var(--fm)"></p>
+        </details>
+        <p class="boundary-note">命令经板2→UART→板1 白名单桥接；accepted 不证明画面已应用。计划先预览、确认后执行；无公网时云端计划明确失败，不伪造结果。</p>
+      </section>
+    </aside>
+  </main>
+  <footer class="footer"><span>Ti60 视觉终端 <i>·</i> 板2 固定 1280×720/30fps FPGA 编码</span><span>PC 实板接收</span></footer>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script>
+const $=id=>document.getElementById(id), token='__TOKEN__';
+async function post(path,data){const r=await fetch(path,{method:'POST',headers:{'Content-Type':'application/json','X-Session-Token':token},body:JSON.stringify(data)});if(!r.ok)throw Error(await r.text());return r.json()}
+function toast(s){const e=$('toast');e.textContent=s;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),2600)}
+function chatMessage(text,type='assistant',detail=''){const row=document.createElement('div');row.className='message '+type;if(type!=='user'){const i=document.createElement('span');i.className='bot-avatar';i.textContent=type==='error'?'!':'>';row.append(i)}const b=document.createElement('div');b.className='bubble';const p=document.createElement('p');p.textContent=text;b.append(p);if(detail){const sm=document.createElement('small');sm.textContent=detail;b.append(sm)}row.append(b);$('chat-body').append(row);$('chat-body').scrollTop=$('chat-body').scrollHeight}
+const panes=['paneCtl','paneAgent','paneDiag'];
+document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#tabs button').forEach(x=>x.classList.remove('on'));b.classList.add('on');panes.forEach(p=>document.getElementById(p).classList.remove('on'));document.getElementById(b.dataset.tab).classList.add('on')});
+const STYLES=[["01","梵高星空","✺"],["02","波普漫画","◑"],["03","糖果","✤"],["04","点彩印象","∴"],["05","蓝调版画","▤"],["06","霓虹","≋"],["07","街头涂鸦","⌇"],["08","赛博朋克","⌁"],["09","极光","∿"],["10","水墨","▒"],["11","毕加索","▙"],["12","像素风","▦"],["13","剪纸","✁"],["14","卡通","◔"],["15","木刻版画","▞"],["16","浮世绘","▟"],["17","素描","✎"],["18","素描极简","─"],["19","蓝晒水彩","◫"],["20","墨影刻痕","⌐"],["21","tiktok","♪"],["22","日出印象","☀"],["23","铁锈","▚"],["24","抖动像素","⣿"],["25","复古","⟲"],["26","迷幻","◎"]];
+STYLES.forEach(([idx,cn,gl],i)=>{
+  const b=document.createElement('button');b.className='style-chip';
+  const g=document.createElement('i');g.textContent=gl;g.style.color=`hsl(${(i*137.5)%360} 70% 62%)`;
+  const n=document.createElement('b');n.textContent=cn;
+  b.append(g,n);b.title='相对切换：DeepSeek 模式可生成 model_prev/next 计划；离线模式请用按钮';
+  b.onclick=()=>{if($('agentMode').value==='offline'){toast('离线模式没有风格读回；请用链路诊断里的上一/下一模型按钮，或切 DeepSeek 模式。');return}$('agentText').value=`切换到「${cn}」风格（编号 ${idx}）。设备没有风格读回：无法确定当前位置时请生成空计划并说明，或按对话上下文给出相对切换步数。`;$('chat-form').requestSubmit()};
+  $('style-row').append(b);
+});
+const LUT_FALLBACK=[
+    ["identity","原始","原始","#202020","#e0e0e0"],["warm","暖色","调色","#000810","#fffffb"],
+    ["aged","泛黄","调色","#080c1c","#ffffdb"],["verdant","泛绿","调色","#000814","#efefbe"],
+    ["memory","记忆","黑白","#101c20","#e7e3d7"],["cine","青橙","调色","#00080c","#ffffeb"],
+    ["neon","酸性霓虹","渐变映射","#0c0024","#efff9a"],["cyan","青版","渐变映射","#080c20","#ebf3ff"],
+    ["forest","森绿","渐变映射","#081810","#f3ebcb"],["thermal","红外伪彩","渐变映射","#000008","#fffbe3"],
+    ["sunset","日落","渐变映射","#18082c","#ffef9a"],["duotone","青橙影调","渐变映射","#082830","#ff9a41"],
+    ["invert","负片","曲线","#ffffff","#000000"]];
+  async function renderLuts(){
+    const grid=document.getElementById("lut-grid");grid.replaceChildren();
+    try{
+      let luts=null;
+      try{ luts=(await (await fetch("/api/agent/status")).json()).luts; }catch(e){}
+      if(!luts||!luts.length) luts=LUT_FALLBACK;
+      luts.forEach(row=>{
+      const [id,cn,kind,c1,c2]=row;
+      const card=document.createElement("button");card.className="lut-card";
+      const swatch=document.createElement("span");swatch.className="lut-swatch";
+      swatch.style.background=`linear-gradient(90deg,${c1},${c2})`;
+      const name=document.createElement("span");name.className="lut-name";
+      const b=document.createElement("b");b.textContent=cn+" · "+kind;
+      name.append(b);card.append(swatch,name);
+      card.title="板端为相对切换（无读回）";
+      card.onclick=()=>{ if($("agentMode").value==="offline"){toast("板端调色表为相对切换（无读回）：请用「上一张/下一张表」按钮，或切 DeepSeek 模式生成切换计划。");return;} $("agentText").value=`把调色表切到「${cn}」（${id}）。设备没有表读回：无法确定当前位置时请生成空计划并说明，或按对话上下文给出 table_next/prev 步数。`;$("chat-form").requestSubmit()};
+      grid.append(card);
+    });
+  }catch(e){grid.append(Object.assign(document.createElement("span"),{className:"small-muted",textContent:"LUT 目录读取失败"}))}
+}
+renderLuts();
+document.querySelectorAll('[data-action]').forEach(b=>b.onclick=async()=>{try{const r=await post('/api/control/action',{action:b.dataset.action});toast(r.ok?(r.note||'已下发'):(r.err+' · '+r.state));}catch(e){toast(e.message)}});
+$('video-mode').onchange=e=>post('/api/control/action',{action:e.target.value}).then(()=>toast('输入模式已下发')).catch(e=>toast(e.message));
+$('keepToggle').onchange=e=>post('/api/control/action',{action:'keep_toggle'}).then(()=>toast('Keep Color 开关已下发（板端 preserve 切换）')).catch(e=>toast(e.message));
+$('agentConfig').onclick=async()=>{try{const r=await post('/api/agent/config',{mode:$('agentMode').value,model:$('agentModel').value,key:$('agentKey').value,send_image:false});$('mode-status').textContent=r.key_set?'DeepSeek':'离线规则';chatMessage(r.key_set?'DeepSeek 已配置；Key 仅进程内存':'离线规则已配置（不是 LLM）。','assistant');}catch(e){chatMessage(e.message,'error')}finally{$('agentKey').value=''}};
+let planned=null;
+function showPlan(r,head){planned=r.plan;chatMessage((head?head+'\n':'')+r.plan.reply,'assistant','计划预览 · 确认后执行');$('agentExecute').disabled=!r.plan.steps.length;const lines=(r.preview||r.plan.steps.map(s=>({label:s.action,count:s.count}))).map(x=>`${x.label} ×${x.count}`).join('\n');$('agentPreview').textContent=lines||'（空计划）';}
+async function prepAgent(){if($('agentMode').value==='deepseek'){try{await post('/api/agent/config',{mode:'deepseek',model:$('agentModel').value,key:$('agentKey').value,send_image:false})}finally{$('agentKey').value=''}}}
+$('agentPlan').onclick=async()=>{try{await prepAgent();const r=await post('/api/agent/plan',{text:$('agentText').value});showPlan(r,'');toast('计划已生成，设备尚未收到命令。');}catch(e){planned=null;$('agentExecute').disabled=true;$('agentPreview').textContent='计划未生成';toast(e.message)}};
+$('agentScene').onclick=async()=>{try{await prepAgent();$('agentScene').disabled=true;$('scene-status').textContent='分析中…';const r=await post('/api/agent/scene_plan',{text:$('agentText').value});showPlan(r,'👁 画面分析：'+r.scene);renderScene(r.stats);toast('已按画面生成计划'+(r.image_sent?'（含识图）':''));}catch(e){planned=null;$('agentExecute').disabled=true;toast(e.message)}finally{$('agentScene').disabled=false}};
+$('chat-form').addEventListener('submit',e=>{e.preventDefault();$('agentPlan').click();});
+$('agentExecute').onclick=async()=>{if(!planned)return;const runPlan=planned;try{$('agentExecute').disabled=true;planned=null;await post('/api/agent/execute',{plan:runPlan});}catch(e){toast('执行请求未确认：'+e.message);return}pollExecute()};
+const done=new Set(['a_accepted','no_commands','busy','stage_failed','commit_unknown','bridge_unavailable','a_rejected','ack_timeout','uart_error','cpu_fault','error','interrupted']);
+function pollExecute(){fetch('/api/agent/status').then(r=>r.json()).then(j=>{const e=j.execution||{};toast('执行状态：'+(e.state||'?')+(e.completed?' · 已接收 '+e.completed.length+' 步':''));if(done.has(e.state)){toast(e.ok===false?(e.err+' · '+e.state):(e.note||('执行结束：'+e.state)));return}setTimeout(pollExecute,500)}).catch(()=>{toast('执行状态暂不可读');})};
+function renderScene(st){if(!st)return;
+  const set=(f,o,frac,txt)=>{$(f).style.width=(Math.max(0,Math.min(1,frac))*100)+'%';$(o).textContent=txt;};
+  set('mB','mBv',st.brightness_mean/255,Math.round(st.brightness_mean));
+  set('mC','mCv',st.brightness_std/128,Math.round(st.brightness_std));
+  set('mS','mSv',st.saturation_mean/255,Math.round(st.saturation_mean));
+  const w=st.warmth||0;$('mW').style.left=(w>=0?50:50+w*50)+'%';$('mW').style.width=Math.abs(w)*50+'%';$('mWv').textContent=(w>0?'+':'')+w.toFixed(2);
+  const sw=$('sw');sw.replaceChildren();
+  (st.dominant_colors||[]).slice(0,4).forEach(c=>{const el=document.createElement('span');el.className='chip';
+    const i=document.createElement('i');i.style.background='#'+c.rgb.map(v=>v.toString(16).padStart(2,'0')).join('');
+    const t=document.createElement('small');t.textContent=Math.round(c.ratio*100)+'%';el.append(i,t);sw.append(el);});
+  $('scene-state').textContent='已更新';
+}
+$('start').onclick=()=>update();
+$('full').onclick=()=>{const target=$('video').parentElement;if(document.fullscreenElement)document.exitFullscreen();else target.requestFullscreen().catch(e=>$('error').textContent=e.message)};
+$('snapshot').onclick=()=>location.href='/snapshot.jpg';$('export').onclick=()=>{location.href='/api/status';};
+$('video').onerror=()=>{if($('video').style.display==='block')setTimeout(()=>$('video').src='/stream?t='+Date.now(),1500);};
+const n=(x,d=1)=>typeof x==='number'?x.toFixed(d):'—';
+async function update(){try{const s=await (await fetch('/api/status')).json();
+  const hasFrame=(s.jpeg_version||0)>0,ctrlOnline=!!s.ctrl?.online,frameLive=hasFrame&&s.age_ms<=1000;
+  $('state').textContent=ctrlOnline?(frameLive?'控制在线 · 实板视频':'控制在线 · 视频停滞'):(frameLive?'实板视频接收 · 控制待响应':(hasFrame?'画面停滞 · 无新完整帧':'等待板2实板数据'));$('state').style.color=frameLive?'var(--accent)':'#ffcf75';
+  $('fps').textContent=n(s.fps_rx);$('mbps').textContent=n(s.mbps,2);$('pps').textContent=n(s.pps,0);
+  $('ctl').textContent=ctrlOnline?'在线':'离线';
+  $('age').textContent=hasFrame?`帧龄 ${n(s.age_ms,0)} ms`:'尚无完整画面';
+  if(hasFrame){$('empty').hidden=true;$('video').style.display='block';if(!$('video').src||!$('video').src.includes('/stream'))$('video').src='/stream?t='+Date.now();}
+  else{$('video').style.display='none';$('empty').hidden=false;}
+  $('detail').textContent=`${s.w||'—'}×${s.h||'—'} · 完整 ${s.frames_ok} / 残缺 ${s.frames_partial} / 丢失 ${s.frames_lost}\n控制端 ${s.ctrl?.host||'—'}:${s.ctrl?.port||'—'} · JPEG ${s.jpeg_bytes||0} B · `+(frameLive?'真实帧更新中':(hasFrame?'最后一帧停滞，保留显示':'尚未收到完整真实帧'));
+  $('regs').textContent=JSON.stringify(s.ctrl?.regs||{},null,1);
+}catch(e){$('state').textContent='本机服务中断';}finally{setTimeout(update,1000)}}update();
+</script></body></html>

@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "model_id": "g4net_v2",
+  "name": "target_priority",
+  "rule": 0.3,
+  "status": "placeholder",
+  "status_note": "PLACEHOLDER THRESHOLD, not calibrated. Single knob: predict the strongest target when its score reaches `rule`, otherwise other. Calibrate on the live demo and replace with whatever logic ends up wanted."
+}

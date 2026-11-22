@@ -1,0 +1,19 @@
+{
+  "input": "E:\\.code\\fpga\\ml\\our_data\\480p\\our_data_480p_merged.mp4",
+  "output_int8": "E:\\.code\\fpga\\library\\style_weights\\deploy\\15_木刻版画_woodcut\\ptq\\demo_int8.mp4",
+  "fp32_reference": null,
+  "comparison_video": null,
+  "source_size": [
+    854,
+    480
+  ],
+  "output_size": [
+    854,
+    480
+  ],
+  "fps": 60.061676063341615,
+  "frames": 1,
+  "elapsed_seconds": 0.055202900010044686,
+  "processing_fps": 18.114990332356463,
+  "cuda_device": "NVIDIA GeForce RTX 3060 Laptop GPU"
+}

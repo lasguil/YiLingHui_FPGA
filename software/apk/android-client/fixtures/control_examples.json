@@ -1,0 +1,7 @@
+{
+  "read_id_request_hex": "435401001234000000000000",
+  "read_id_ack_hex": "43540102123400004e423031",
+  "board_id": "NB01",
+  "request_local_port": 5000,
+  "board_port": 5000
+}

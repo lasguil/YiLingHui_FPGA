@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0f1512">
+<title>YILINGHUI 易灵绘</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="app-shell">
+  <header class="top-app-bar">
+    <div class="brand">
+      <span class="brand-mark studio-mark" role="img" aria-label="易"><svg class="studio-logo" viewBox="0 0 38 38" aria-hidden="true">
+      <defs>
+        <clipPath id="studioMarkTop"><rect x="0" y="0" width="38" height="18.6" /></clipPath>
+        <clipPath id="studioMarkBottom"><rect x="0" y="18.6" width="38" height="19.4" /></clipPath>
+      </defs>
+      <polygon points="7,0 38,0 38,31 31,38 0,38 0,7" fill="#10251e" stroke="#83dcc3" stroke-width="1.5" />
+      <rect x="30" y="2.5" width="5.5" height="2" fill="#ed8bcf" />
+      <rect x="2.5" y="33.5" width="5.5" height="2" fill="#8cdef0" />
+      <path d="M258 1639H1810V771H775Q738 716 697 665H1930L1895 112Q1883 -55 1820.5 -139.5Q1758 -224 1691.0 -239.5Q1624 -255 1314 -255Q1287 -129 1242 13Q1092 -156 888 -279Q790 -203 648 -113Q1066 114 1210 439H1013Q783 30 218 -213Q146 -127 22 -11Q501 174 685 439H486Q366 330 226 239Q158 311 30 427Q285 556 463 771H258ZM1532 1417H536V1299H1532ZM1532 993V1111H536V993ZM1253 25Q1359 12 1456 12Q1525 12 1550.0 24.5Q1575 37 1592.5 67.5Q1610 98 1622.0 217.5Q1634 337 1638 439H1505Q1409 206 1253 25Z" fill="#ed8bcf" opacity=".9" transform="translate(-2.2,0) translate(8.5,27) scale(0.0102539,-0.0102539)" /><path d="M258 1639H1810V771H775Q738 716 697 665H1930L1895 112Q1883 -55 1820.5 -139.5Q1758 -224 1691.0 -239.5Q1624 -255 1314 -255Q1287 -129 1242 13Q1092 -156 888 -279Q790 -203 648 -113Q1066 114 1210 439H1013Q783 30 218 -213Q146 -127 22 -11Q501 174 685 439H486Q366 330 226 239Q158 311 30 427Q285 556 463 771H258ZM1532 1417H536V1299H1532ZM1532 993V1111H536V993ZM1253 25Q1359 12 1456 12Q1525 12 1550.0 24.5Q1575 37 1592.5 67.5Q1610 98 1622.0 217.5Q1634 337 1638 439H1505Q1409 206 1253 25Z" fill="#8cdef0" opacity=".9" transform="translate(2.2,0) translate(8.5,27) scale(0.0102539,-0.0102539)" /><g clip-path="url(#studioMarkTop)"><path d="M258 1639H1810V771H775Q738 716 697 665H1930L1895 112Q1883 -55 1820.5 -139.5Q1758 -224 1691.0 -239.5Q1624 -255 1314 -255Q1287 -129 1242 13Q1092 -156 888 -279Q790 -203 648 -113Q1066 114 1210 439H1013Q783 30 218 -213Q146 -127 22 -11Q501 174 685 439H486Q366 330 226 239Q158 311 30 427Q285 556 463 771H258ZM1532 1417H536V1299H1532ZM1532 993V1111H536V993ZM1253 25Q1359 12 1456 12Q1525 12 1550.0 24.5Q1575 37 1592.5 67.5Q1610 98 1622.0 217.5Q1634 337 1638 439H1505Q1409 206 1253 25Z" fill="#effaf5" transform="translate(8.5,27) scale(0.0102539,-0.0102539)" /></g>
+      <g clip-path="url(#studioMarkBottom)" transform="translate(2.6,0)"><path d="M258 1639H1810V771H775Q738 716 697 665H1930L1895 112Q1883 -55 1820.5 -139.5Q1758 -224 1691.0 -239.5Q1624 -255 1314 -255Q1287 -129 1242 13Q1092 -156 888 -279Q790 -203 648 -113Q1066 114 1210 439H1013Q783 30 218 -213Q146 -127 22 -11Q501 174 685 439H486Q366 330 226 239Q158 311 30 427Q285 556 463 771H258ZM1532 1417H536V1299H1532ZM1532 993V1111H536V993ZM1253 25Q1359 12 1456 12Q1525 12 1550.0 24.5Q1575 37 1592.5 67.5Q1610 98 1622.0 217.5Q1634 337 1638 439H1505Q1409 206 1253 25Z" fill="#83dcc3" transform="translate(8.5,27) scale(0.0102539,-0.0102539)" /></g>
+      <rect x="5" y="18.1" width="28" height="1.1" fill="#83dcc3" />
+      <rect x="0" y="18.1" width="3.5" height="1.1" fill="#ed8bcf" />
+      <rect x="34.5" y="18.1" width="3.5" height="1.1" fill="#8cdef0" />
+    </svg></span>
+      <span class="brand-copy"><strong>YILINGHUI</strong><small>移动视觉终端</small></span>
+    </div>
+    <div class="status-pill" id="state-pill"><span class="status-dot"></span><span id="state">正在连接…</span></div>
+  </header>
+  <div class="live-stage sticky-view" id="liveStage">
+      <article class="video-card">
+        <div class="video-card-heading"><span class="eyebrow">LIVE VIEW</span></div>
+        <div class="video-frame" id="viewer">
+          <div class="empty-state" id="empty">等待完整 JPEG<br><small>连接板卡后开始接收</small></div>
+          <img id="video" alt="实时视频" style="display:none">
+        </div>
+        <div class="video-meta"><span id="age">尚无画面</span><span>1280×720 · 30 fps</span></div>
+        <div class="video-toolbar">
+          <button id="video-mode" class="select compact mode-trigger" type="button" aria-haspopup="dialog" aria-expanded="false" title="输入分辨率">
+            <span id="video-mode-label">1080p30</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5H7Z"/></svg>
+          </button>
+          <button class="icon-button" id="full" title="全屏" aria-label="全屏"><svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3Zm-2-4h2V7h3V5H5v5Zm12 7h-3v2h5v-5h-2v3ZM14 5v2h3v3h2V5h-5Z"/></svg></button>
+          <button class="icon-button" id="snapshot" title="保存快照" aria-label="保存快照"><svg viewBox="0 0 24 24"><path d="M9 3 7.2 5H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-3.2L15 3H9Zm3 15a5 5 0 1 1 0-10 5 5 0 0 1 0 10Zm0-2a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/></svg></button>
+          <button class="icon-button" id="export" title="导出统计" aria-label="导出统计"><svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7ZM5 18v2h14v-2H5Z"/></svg></button>
+        </div>
+      </article>
+  </div>
+
+  <main class="screen-stack">
+    <section class="screen on" id="paneView">
+      <button class="connect-card" id="connect-board" type="button">
+        <span class="connect-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M1.5 8.5C7.3 3 16.7 3 22.5 8.5l-1.8 1.8c-4.8-4.5-12.6-4.5-17.4 0L1.5 8.5Zm4 4c3.6-3.3 9.4-3.3 13 0l-1.8 1.8c-2.6-2.4-6.8-2.4-9.4 0l-1.8-1.8Zm4 4c1.5-1.3 3.5-1.3 5 0L12 19.5 9.5 16.5Z"/></svg>
+        </span>
+        <span class="connect-copy"><strong>连接板卡</strong></span>
+        <span class="connect-chevron" aria-hidden="true">›</span>
+      </button>
+
+      <div class="stat-row">
+        <div class="stat"><strong id="fps">—</strong><span>完整帧/s</span></div>
+        <div class="stat"><strong id="mbps">—</strong><span>UDP Mbps</span></div>
+        <div class="stat"><strong id="pps">—</strong><span>包/s</span></div>
+      </div>
+
+
+      <article class="card control-card">
+        <div class="card-head"><div><h3>画面控制</h3></div></div>
+        <div class="control-group"><span class="group-label">播放</span><div class="control-pair"><button type="button" data-pause="1">Ⅱ 暂停</button><button type="button" data-pause="0">▶ 恢复</button></div></div>
+        <div class="control-group"><span class="group-label">显示</span><div class="control-pair"><button data-action="view_next">切换视图</button><button data-action="vflip">画面翻转</button><button data-action="ui_hide_all">隐藏 UI</button><button data-action="ui_restore">恢复 UI</button><button data-action="reset">重置效果</button></div></div>
+        <div class="control-group"><span class="group-label">挥手模式</span><div class="choice-grid" id="waveGrid" role="group" aria-label="挥手模式"></div></div>
+      </article>
+    </section>
+
+    <section class="screen" id="paneCtl">
+      <div class="section-heading"><div><span class="eyebrow">STYLE</span><h2>风格与调色</h2></div></div>
+      <article class="card">
+        <div class="card-head"><div><h3>AI 风格</h3></div><span class="chip">29 款</span></div>
+        <div class="choice-grid style-grid" id="modelGrid" role="group" aria-label="AI 风格"></div>
+        <div class="divider"></div><div class="range-control"><div class="range-heading"><label for="aiSet">AI 强度</label><output id="aiValue">100%</output></div><div class="range-wrap" style="--progress:100%"><input class="precise-range" id="aiSet" data-parameter="ai" type="range" min="0" max="100" value="100" step="1" aria-label="AI 强度"></div><div class="range-ends"><span>0%</span><span>100%</span></div></div>
+      </article>
+      <article class="card">
+        <div class="card-head"><div><h3>调色表</h3></div><span class="chip" id="lut-chip">13 张</span></div>
+        <div class="choice-grid" id="tableGrid" role="group" aria-label="调色表"></div>
+        <div class="divider"></div>
+        <div class="control-label">颜色模式</div>
+        <div class="mode-grid">
+          <button type="button" data-action="color_curve">RGB 曲线</button>
+          <button type="button" data-action="color_gray">灰度配色</button>
+          <button type="button" data-action="color_duotone">双调网点</button>
+          <button type="button" data-action="color_dots">彩色网点</button>
+        </div><div class="divider"></div><div class="range-control"><div class="range-heading"><label for="fxSet">效果强度</label><output id="fxValue">100%</output></div><div class="range-wrap" style="--progress:100%"><input class="precise-range" id="fxSet" data-parameter="fx" type="range" min="0" max="100" value="100" step="1" aria-label="效果强度"></div><div class="range-ends"><span>0%</span><span>100%</span></div></div><div class="range-control"><div class="range-heading"><label for="satSet">饱和度</label><output id="satValue">100%</output></div><div class="range-wrap" style="--progress:50%"><input class="precise-range" id="satSet" data-parameter="sat" type="range" min="0" max="200" value="100" step="1" aria-label="饱和度"></div><div class="range-ends"><span>0%</span><span>200%</span></div></div>
+      </article>
+      <article class="card keep-card">
+        <div class="card-head"><div><h3>抽色</h3></div><div class="keep-actions"><button type="button" id="keepDefaults" class="outlined-button">恢复默认范围</button><button type="button" id="keepToggle" class="outlined-button" aria-label="抽色" aria-pressed="false">已关闭</button></div></div>
+        <div class="choice-grid rgb-grid" id="keepRangeGrid" role="group" aria-label="保色范围"></div>
+        <div class="rgb-bounds" id="rgbBounds"></div>
+      </article>
+
+    </section>
+
+    <section class="screen" id="paneAgent">
+      <div class="section-heading"><div><span class="eyebrow">AGENT</span><h2>画面助手</h2></div><div class="agent-heading-actions"><button class="outlined-button agent-clear" id="agentClear" type="button" title="清空对话和 Agent 上下文记忆，保留 Agent 设置和 API Key">新对话</button></div></div>
+
+      <article class="card chat-card">
+        <div class="chat-body" id="chat-body">
+          <div class="message assistant"><span class="bot-avatar">›</span><div class="bubble"><b>你好，我是易灵绘 Agent。</b><p>描述想要的效果，我会直接操作，并可根据画面继续调整。</p></div></div>
+        </div>
+        <div class="scene-row">
+          <span class="supporting" id="scene-status" role="status"></span>
+        </div>
+        <label class="switch-row"><span>识图：连同画面发送</span><input type="checkbox" id="agentSendImage" checked></label>
+        <form id="chat-form" class="composer">
+          <textarea id="agentText" rows="2" maxlength="1200" placeholder="描述你想要的画面变化…"></textarea>
+          <button id="send" type="submit" aria-label="发送"><svg viewBox="0 0 24 24"><path d="M2 21 23 12 2 3v7l15 2-15 2v7Z"/></svg></button>
+        </form>
+      </article>
+
+      <details class="card settings-card">
+        <summary>Agent 设置</summary>
+        <div class="field-grid">
+          <label class="field"><span>模型</span><input id="agentModel" value="deepseek-flash" maxlength="80"></label>
+          <label class="field"><span>DeepSeek API Key</span><input id="agentKey" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="500" placeholder="粘贴或输入 API Key"><small>加密保存在本机；留空使用已保存的 Key</small></label>
+          <button class="tonal-button" id="agentConfig" type="button">应用设置</button>
+        </div>
+      </details>
+    </section>
+
+    <section class="screen" id="paneDiag">
+      <div class="section-heading"><div><span class="eyebrow">LINK</span><h2>链路与设置</h2></div><span class="chip" id="ctl">—</span></div>
+
+      <article class="card">
+        <div class="card-head"><div><h3>链路诊断</h3><p>板2 MJPEG · 固定 1280×720/30fps</p></div></div>
+        <p class="detail-text" id="detail"></p>
+        <details class="reg-details"><summary>板端寄存器</summary><pre id="regs">未读取</pre></details>
+      </article>
+
+
+
+      <details class="card settings-card">
+        <summary>连接设置</summary>
+        <div class="field-grid">
+          <label class="field"><span>板 IPv4</span><input id="board" value="192.168.0.2" inputmode="decimal"></label>
+          <div class="field-pair">
+            <label class="field"><span>视频端口</span><input id="port" type="number" value="5001" inputmode="numeric"></label>
+            <label class="field"><span>组帧超时 ms</span><input id="timeout" type="number" value="100" inputmode="numeric"></label>
+          </div>
+          <label class="field"><span>VONETS SSID</span><input id="wifi-ssid" value="VONETS_5G_804C"></label>
+          <label class="field"><span>VONETS 密码</span><input id="wifi-pass" type="password" value="12345678"></label>
+          <div class="button-row"><button class="tonal-button" id="start" type="button">开始接收</button><button class="outlined-button" id="stop" type="button">停止</button><button class="outlined-button" id="permission" type="button">权限诊断</button></div>
+          <p class="error-text" id="error"></p>
+        </div>
+      </details>
+
+      <button class="list-row" id="export-log" type="button">
+        <span class="list-row-icon"><svg viewBox="0 0 24 24"><path d="M12 3v10.2l3.6-3.6L17 11l-5 5-5-5 1.4-1.4L12 13.2V3h0ZM5 19h14v2H5v-2Z"/></svg></span>
+        <span><b>导出连接日志</b><small>保存到 Download/Ti60</small></span>
+        <span class="list-row-chevron">›</span>
+      </button>
+
+    </section>
+  </main>
+
+  <nav class="bottom-nav" id="tabs" aria-label="主导航">
+    <button type="button" class="nav-item on" data-tab="paneView"><svg viewBox="0 0 24 24"><path d="M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm5 3v8l6-4-6-4Z"/></svg><span>画面</span></button>
+    <button type="button" class="nav-item" data-tab="paneCtl"><svg viewBox="0 0 24 24"><path d="M3 17v2h6v-2H3ZM3 5v2h10V5H3Zm10 16v-2h8v-2h-8v-2h-2v6h2ZM7 9v2H3v2h4v2h2V9H7Zm14 4v-2H11v2h10Zm-6-4h2V7h4V5h-4V3h-2v6Z"/></svg><span>调色</span></button>
+    <button type="button" class="nav-item" data-tab="paneAgent"><svg viewBox="0 0 24 24"><path d="M19 9l1.25-2.75L23 5l-2.75-1.25L19 1l-1.25 2.75L15 5l2.75 1.25L19 9Zm-7.5.5L9 4 6.5 9.5 1 12l5.5 2.5L9 20l2.5-5.5L17 12l-5.5-2.5ZM19 15l-1.25 2.75L15 19l2.75 1.25L19 23l1.25-2.75L23 19l-2.75-1.25L19 15Z"/></svg><span>智能</span></button>
+    <button type="button" class="nav-item" data-tab="paneDiag"><svg viewBox="0 0 24 24"><path d="M6 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm6 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm6 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"/></svg><span>更多</span></button>
+  </nav>
+</div>
+<div class="sheet-backdrop" id="video-mode-sheet" hidden>
+  <div class="bottom-sheet" role="dialog" aria-modal="true" aria-label="输入分辨率">
+    <div class="sheet-handle"></div>
+    <div class="sheet-head"><h3>输入分辨率</h3><button class="icon-button sheet-close" id="video-mode-close" type="button" aria-label="关闭">×</button></div>
+    <div class="sheet-options">
+      <button class="sheet-option selected" type="button" data-video-mode="video_mode_0" data-label="1080p30">1080p · 30 fps<span class="check">✓</span></button>
+      <button class="sheet-option" type="button" data-video-mode="video_mode_1" data-label="720p30">720p · 30 fps<span class="check">✓</span></button>
+      <button class="sheet-option" type="button" data-video-mode="video_mode_2" data-label="480p30">480p · 30 fps<span class="check">✓</span></button>
+      <button class="sheet-option" type="button" data-video-mode="video_mode_3" data-label="480p60">480p · 60 fps<span class="check">✓</span></button>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script>
+const $=id=>document.getElementById(id), token='__TOKEN__';
+async function post(path,data){
+  const r=await fetch(path,{method:'POST',headers:{'Content-Type':'application/json','X-Session-Token':token},body:JSON.stringify(data)});
+  const text=await r.text();let result;try{result=JSON.parse(text)}catch(e){}
+  if(!r.ok||result?.ok===false)throw Error(result?.err||result?.error||result?.message||result?.state||text||('请求失败 · HTTP '+r.status));
+  if(!result)throw Error('服务响应无效');return result
+}
+function toast(s){const e=$('toast');e.textContent=s;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),2600)}
+function chatMessage(text,type='assistant',detail=''){const row=document.createElement('div');row.className='message '+type;if(type!=='user'){const i=document.createElement('span');i.className='bot-avatar';i.textContent=type==='error'?'!':'>';row.append(i)}const b=document.createElement('div');b.className='bubble';const p=document.createElement('p');p.textContent=text;b.append(p);if(detail){const sm=document.createElement('small');sm.textContent=detail;b.append(sm)}row.append(b);$('chat-body').append(row);$('chat-body').scrollTop=$('chat-body').scrollHeight}
+fetch('/api/agent/history').then(r=>r.json()).then(j=>{const m=j.messages||[];if(!m.length)return;$('chat-body').replaceChildren();for(const x of m)chatMessage(x.text||'',x.role==='user'?'user':'assistant')}).catch(()=>{});
+const panes=['paneView','paneCtl','paneAgent','paneDiag'];
+const liveStage=$('liveStage');
+// Match the sticky preview offset to the actual header, including font scaling.
+const appBar=document.querySelector('.top-app-bar');
+new ResizeObserver(()=>document.documentElement.style.setProperty('--appbar-offset',appBar.getBoundingClientRect().height+'px')).observe(appBar);
+// One glass lens travels between destinations; CSS retargets in-flight transitions.
+const nav=$('tabs'),navButtons=[...nav.querySelectorAll('button')];
+const lens=document.createElement('span');lens.className='nav-lens';lens.setAttribute('aria-hidden','true');nav.prepend(lens);
+function syncNavLens(){
+ const selected=nav.querySelector('button.on');if(!selected)return;
+ lens.style.width=selected.offsetWidth+'px';lens.style.height=selected.offsetHeight+'px';
+ lens.style.transform=`translate3d(${selected.offsetLeft}px,${selected.offsetTop}px,0)`;
+}
+navButtons.forEach(b=>b.setAttribute('aria-current',b.classList.contains('on')?'page':'false'));
+syncNavLens();requestAnimationFrame(()=>requestAnimationFrame(()=>nav.classList.add('motion-ready')));
+new ResizeObserver(syncNavLens).observe(nav);
+navButtons.forEach((b,index)=>b.onclick=()=>{
+ const previous=navButtons.findIndex(x=>x.classList.contains('on'));if(previous===index)return;
+ navButtons.forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-current',x===b?'page':'false')});
+ panes.forEach(p=>document.getElementById(p).classList.remove('on'));
+ const pane=document.getElementById(b.dataset.tab);pane.classList.add('on');
+ liveStage.classList.toggle('pinned',b.dataset.tab!=='paneView');liveStage.classList.toggle('sticky-view',b.dataset.tab==='paneView');window.scrollTo(0,0);syncNavLens();
+
+});
+
+// Keyboard viewport changes lift the monitor, then reveal the complete composer.
+const viewport=window.visualViewport,keyboardRoot=document.documentElement;
+let keyboardBaseline=viewport?.height||innerHeight,keyboardFrame=0,keyboardScrollTimer=0;
+function syncKeyboardLayout(){
+ keyboardFrame=0;
+ const height=viewport?.height||innerHeight,focused=document.activeElement===$('agentText');
+ const agentVisible=$('paneAgent').classList.contains('on');
+ if(!focused&&!keyboardRoot.classList.contains('agent-keyboard'))keyboardBaseline=Math.max(keyboardBaseline,height);
+ const open=agentVisible&&!document.fullscreenElement&&keyboardBaseline-height>120;
+ keyboardRoot.style.setProperty('--keyboard-preview-lift',Math.max(0,liveStage.offsetHeight-80)+'px');
+ keyboardRoot.classList.toggle('agent-keyboard',open);
+ clearTimeout(keyboardScrollTimer);
+ if(open&&focused)keyboardScrollTimer=setTimeout(()=>{
+  const form=$('chat-form').getBoundingClientRect(),bottom=(viewport?.offsetTop||0)+(viewport?.height||innerHeight);
+  const target=bottom-form.height-16;
+  window.scrollBy({top:form.top-target,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
+ },120);
+ if(!open&&!focused)keyboardBaseline=height;
+}
+function queueKeyboardLayout(){if(!keyboardFrame)keyboardFrame=requestAnimationFrame(syncKeyboardLayout)}
+viewport?.addEventListener('resize',queueKeyboardLayout);
+window.addEventListener('resize',queueKeyboardLayout);
+$('agentText').addEventListener('focus',queueKeyboardLayout);
+$('agentText').addEventListener('blur',queueKeyboardLayout);
+new MutationObserver(queueKeyboardLayout).observe($('paneAgent'),{attributes:true,attributeFilter:['class']});
+
+
+liveStage.addEventListener('click',e=>{
+ if(liveStage.classList.contains('pinned')&&!document.fullscreenElement&&!e.target.closest('button,a,input,select,textarea'))togglePreviewFullscreen();
+});
+
+document.querySelectorAll('[data-action]').forEach(b=>b.onclick=async()=>{try{const r=await enqueueControl(()=>post('/api/control/action',{action:b.dataset.action}));if(b.dataset.action==='reset'){for(const [field,value] of Object.entries({ai:100,fx:100,sat:100,keep:0,keep_range:0}))showParameter(field,value)}if(r.ok)kickVideoStream();toast(r.ok?'已下发':(r.err||r.state||'下发失败'));}catch(e){toast(e.message)}});
+
+const styles=['梵高星空','波普漫画','糖果','点彩印象','蓝调版画','霓虹','街头涂鸦','赛博朋克','极光','水墨','毕加索','像素风','剪纸','卡通','木刻版画','浮世绘','素描','素描极简','蓝晒水彩','墨影刻痕','TikTok','日出印象','铁锈','抖动像素','复古','迷幻','铜浮雕','诺贝尔金箔','马赛克'];
+const tables=['原始','暖色','泛黄','泛绿','记忆','青橙','酸性霓虹','青版','森绿','红外伪彩','日落','青橙影调','负片'];
+let controlQueue=Promise.resolve();
+function enqueueControl(task){const pending=controlQueue.then(task);controlQueue=pending.catch(()=>{});return pending}
+const parameterValues={ai:100,fx:100,sat:100};
+let keepPreset=0;
+const keepPresets=[[128,255,0,145,0,145],[0,75,55,255,0,120],[0,160,0,185,100,255]];
+function showParameter(field,value){
+  parameterValues[field]=value;
+  const range=$(field+'Set');if(range){range.value=value;range._touchValue=String(value);$(field+'Value').textContent=value+(range.dataset.unit||'%');range.parentElement.style.setProperty('--progress',(value/Number(range.max)*100)+'%')}
+  if(field==='pause')document.querySelectorAll('[data-pause]').forEach(b=>b.classList.toggle('selected',Number(b.dataset.pause)===value));
+  document.querySelectorAll('[data-field="'+field+'"]').forEach(b=>{const on=Number(b.dataset.value)===value;b.classList.toggle('selected',on);b.setAttribute('aria-pressed',String(on))});
+  if(field==='keep')showKeepToggle(!!value);
+  if(field==='keep_range'){keepPreset=value;keepPresets[value].forEach((v,i)=>showParameter('b'+i,v))}
+}
+async function setParam(field,value){
+  try{await enqueueControl(()=>post('/api/control/set',{field,value}));showParameter(field,value);toast('已下发');return true}
+  catch(e){if(parameterValues[field]!==undefined)showParameter(field,parameterValues[field]);toast(e.message);return false}
+}
+function fillGrid(id,items,field){const box=$(id);items.forEach((name,value)=>{const b=document.createElement('button');b.type='button';b.textContent=name;b.dataset.field=field;b.dataset.value=value;b.setAttribute('aria-pressed','false');b.onclick=async()=>{b.disabled=true;try{await setParam(field,value)}finally{b.disabled=false}};box.append(b)})}
+fillGrid('modelGrid',styles,'model');fillGrid('tableGrid',tables,'table');fillGrid('waveGrid',['关闭','核心板','扩展板'],'wave');fillGrid('keepRangeGrid',['R · 红色','G · 绿色','B · 蓝色'],'keep_range');
+for(let i=0;i<6;i++){
+  const field='b'+i,label=['R 下限','R 上限','G 下限','G 上限','B 下限','B 上限'][i],value=keepPresets[0][i];
+  const row=document.createElement('div');row.className='range-control rgb-range rgb-'+Math.floor(i/2);
+  row.innerHTML='<div class="range-heading"><label for="'+field+'Set">'+label+'</label><output id="'+field+'Value">'+value+'</output></div><div class="range-wrap"><input class="precise-range" id="'+field+'Set" data-parameter="'+field+'" data-unit=" " type="range" min="0" max="255" value="'+value+'" aria-label="'+label+'"></div>';
+  $('rgbBounds').append(row);showParameter(field,value)
+}
+// Native range inputs change on touch-down, before the browser knows a scroll's direction.
+// Keep vertical pan native; only a deliberate horizontal touch drag may commit.
+function guardRangeTouch(el){
+  const paint=()=>{el._touchValue=el.value;el.dispatchEvent(new Event('input',{bubbles:true}))};
+  // Chromium may emit a native change after pointerup even with pointerdown cancelled.
+  // Touch values are owned by this gesture handler; mouse and keyboard stay native.
+  for(const name of ['input','change'])el.addEventListener(name,e=>{if(e.isTrusted&&el._touchOwned){e.stopImmediatePropagation();el.value=el._touchValue}},{capture:true});
+  el.addEventListener('keydown',()=>{el._touchOwned=false});
+  el.addEventListener('pointerdown',e=>{if(e.pointerType!=='touch'){el._touchOwned=false;return}e.preventDefault();if(el._rangeTouch)return;el._touchOwned=true;el._touchValue=el.value;el._rangeTouch={id:e.pointerId,x:e.clientX,y:e.clientY,value:el.value,mode:'pending'};},{passive:false});
+  el.addEventListener('pointermove',e=>{const g=el._rangeTouch;if(!g||g.id!==e.pointerId)return;const dx=e.clientX-g.x,dy=e.clientY-g.y;
+    if(g.mode==='pending'){if(Math.abs(dy)>8&&Math.abs(dy)>=Math.abs(dx)){g.mode='scroll';return}if(Math.abs(dx)<12||Math.abs(dx)<Math.abs(dy)*1.4)return;g.mode='drag';el.focus({preventScroll:true});el.setPointerCapture(e.pointerId)}
+    if(g.mode!=='drag')return;const width=Math.max(1,el.getBoundingClientRect().width-24),step=Number(el.step)||1;
+    el.value=Math.max(Number(el.min),Math.min(Number(el.max),Math.round((Number(g.value)+dx/width*(Number(el.max)-Number(el.min)))/step)*step));paint()
+  });
+  function finish(e,cancel){const g=el._rangeTouch;if(!g||g.id!==e.pointerId)return;el._rangeTouch=null;
+    if(cancel||g.mode!=='drag'){el.value=g.value;paint();return}
+    if(el.value!==g.value)el.dispatchEvent(new Event('change',{bubbles:true}))
+  }
+  el.addEventListener('pointerup',e=>finish(e,false));el.addEventListener('pointercancel',e=>finish(e,true));
+}
+document.querySelectorAll('[data-parameter]').forEach(el=>{const field=el.dataset.parameter;el.oninput=()=>{$(field+'Value').textContent=el.value+(el.dataset.unit||'%');el.parentElement.style.setProperty('--progress',(Number(el.value)/Number(el.max)*100)+'%')};el.onchange=()=>{if(!el._rangeTouch)setParam(field,Number(el.value))};guardRangeTouch(el)});
+$('keepDefaults').onclick=async()=>{const b=$('keepDefaults');b.disabled=true;try{await setParam('keep_range',keepPreset)}finally{b.disabled=false}};
+document.querySelectorAll('[data-pause]').forEach(b=>b.onclick=()=>setParam('pause',Number(b.dataset.pause)));
+
+fetch('/api/agent/status').then(r=>r.json()).then(j=>{
+  const n=(j.luts||[]).length;
+  if(n>0)$('lut-chip').textContent=n+' 张';
+  $('agentModel').value=j.model||'deepseek-flash';
+  $('agentSendImage').checked=!!j.send_image;
+  if(j.key_set)$('agentKey').placeholder='已保存，留空继续使用；可粘贴新 Key 替换';
+}).catch(()=>{});
+let liveRunning=false, lastStreamKick=0;
+function kickVideoStream(){
+  const v=$('video');
+  if(v && v.style.display==='block'){
+    lastStreamKick=Date.now();
+    v.src='/stream?t='+lastStreamKick;
+  }
+}
+const videoModeSheet=$('video-mode-sheet'), videoModeButton=$('video-mode');
+function closeVideoModeSheet(){videoModeSheet.hidden=true;videoModeButton.setAttribute('aria-expanded','false')}
+videoModeButton.onclick=()=>{videoModeSheet.hidden=false;videoModeButton.setAttribute('aria-expanded','true')};
+$('video-mode-close').onclick=closeVideoModeSheet;
+videoModeSheet.addEventListener('click',e=>{if(e.target===videoModeSheet)closeVideoModeSheet()});
+document.querySelectorAll('[data-video-mode]').forEach(b=>b.onclick=async()=>{
+  try{const r=await post('/api/control/action',{action:b.dataset.videoMode});if(!r.ok)throw Error(r.err||r.state||'下发失败');kickVideoStream();$('video-mode-label').textContent=b.dataset.label;document.querySelectorAll('[data-video-mode]').forEach(x=>x.classList.toggle('selected',x===b));closeVideoModeSheet();toast('输入分辨率已切换');}catch(e){toast(e.message)}
+});
+function showKeepToggle(on){const el=$('keepToggle');el.setAttribute('aria-pressed',String(on));el.classList.toggle('selected',on);el.textContent=on?'已启用':'已关闭'}
+$('keepToggle').onclick=async e=>{const el=e.currentTarget,previous=el.getAttribute('aria-pressed')==='true';el.disabled=true;try{const ok=await setParam('keep',previous?0:1);if(!ok)showKeepToggle(parameterValues.keep===undefined?previous:!!parameterValues.keep)}catch(err){showKeepToggle(previous);toast(err.message)}finally{el.disabled=false}};
+$('agentConfig').onclick=async()=>{try{await prepAgent();$('agentKey').value='';toast('设置已应用')}catch(e){toast(e.message)}};
+let agentBusy=false,agentStarted=false,cancelRequested=false,cancelPending=false;
+async function prepAgent(){await post('/api/agent/config',{mode:'deepseek',model:$('agentModel').value,key:$('agentKey').value,send_image:$('agentSendImage').checked})}
+function agentControls(busy){
+ agentBusy=busy;if(!busy){agentStarted=false;cancelRequested=false;cancelPending=false}
+ const send=$('send');send.disabled=busy&&(cancelRequested||cancelPending);
+ send.setAttribute('aria-label',busy?(cancelRequested?'正在停止':'停止'):'发送');send.title=send.getAttribute('aria-label');
+ send.classList.toggle('stopping',busy);
+ send.querySelector('path').setAttribute('d',busy?'M6 6h12v12H6Z':'M2 21 23 12 2 3v7l15 2-15 2v7Z');
+ $('agentClear').disabled=busy;
+}
+async function stopAgent(){
+ if(!agentBusy||cancelRequested||cancelPending)return;
+ cancelRequested=true;agentControls(true);$('scene-status').textContent='正在停止…';
+ if(!agentStarted)return;
+ await cancelAgentRun();
+}
+async function cancelAgentRun(){
+ cancelPending=true;
+ try{await post('/api/agent/cancel',{});toast('将停止后续操作')}
+ catch(e){cancelRequested=false;toast('停止失败：'+e.message)}
+ finally{cancelPending=false;agentControls(agentBusy)}
+}
+async function runAgent(text){
+  if(agentBusy)return;const clean=text.trim();if(!clean){toast('请输入内容');return}
+  chatMessage(clean,'user');$('agentText').value='';agentControls(true);$('scene-status').textContent='处理中…';
+  try{await prepAgent();if(cancelRequested){agentControls(false);$('scene-status').textContent='已停止';return}await post('/api/agent/run',{text:clean});agentStarted=true;if(cancelRequested)await cancelAgentRun();pollAgent()}
+  catch(e){agentControls(false);$('scene-status').textContent='未完成';chatMessage('未完成：'+e.message,'error')}
+}
+function pollAgent(){fetch('/api/agent/status').then(r=>r.json()).then(j=>{
+  const e=j.execution||{}, state=e.state||'thinking', n=(e.completed||[]).length;
+  if(['done','error','cancelled','limit'].includes(state)){
+    agentControls(false);$('scene-status').textContent=state==='done'?'已完成':'已停止';
+    const note=n?'设备确认接收 '+n+' 步；画面效果以实际显示为准':'';
+    chatMessage((e.reply||'')+(e.err?'\n'+e.err:'' )||'已完成',state==='done'?'assistant':'error',note);return
+  }
+  $('scene-status').textContent=state==='observing'?'正在观察画面…':state==='thinking'?'正在思考…':state==='tool_running'?'正在调用 '+(e.tool||'App 工具')+'…':state==='tool_result'?'已收到 '+(e.tool||'工具')+' 结果，继续处理…':'正在操作 · '+n+' 步';
+  setTimeout(pollAgent,700)
+}).catch(()=>{ $('scene-status').textContent='状态暂不可读，继续等待…';setTimeout(pollAgent,1500) })}
+$('agentClear').onclick=async()=>{if(agentBusy)return;const b=$('agentClear');b.disabled=true;try{await post('/api/agent/clear',{});$('chat-body').replaceChildren();chatMessage('你好，我是易灵绘 Agent。\n描述想要的效果，我会直接操作，并可根据画面继续调整。','assistant');$('scene-status').textContent='';$('agentText').value='';toast('已开启新对话，记忆已清空')}catch(e){toast('清空失败：'+e.message)}finally{b.disabled=agentBusy}};
+$('chat-form').addEventListener('submit',e=>{e.preventDefault();if(agentBusy)stopAgent();else runAgent($('agentText').value)});
+$('start').onclick=async()=>{try{await post('/api/session',{action:'start',board:$('board').value,port:Number($('port').value),timeout_ms:Number($('timeout').value),simulation:false});$('error').textContent='';}catch(e){$('error').textContent=e.message}};
+$('stop').onclick=()=>post('/api/session',{action:'stop'}).catch(e=>$('error').textContent=e.message);
+async function togglePreviewFullscreen(){
+  if(document.fullscreenElement){await document.exitFullscreen();return}
+  try{
+    if(window.AndroidBridge&&typeof AndroidBridge.setPreviewFullscreen==='function')AndroidBridge.setPreviewFullscreen(true)
+    await $('viewer').requestFullscreen()
+  }catch(e){
+    if(window.AndroidBridge&&typeof AndroidBridge.setPreviewFullscreen==='function')AndroidBridge.setPreviewFullscreen(false)
+    toast('全屏失败：'+e.message)
+  }
+}
+$('full').onclick=togglePreviewFullscreen;
+document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement&&window.AndroidBridge&&typeof AndroidBridge.setPreviewFullscreen==='function')AndroidBridge.setPreviewFullscreen(false)});
+$('snapshot').onclick=()=>location.href='/save-snapshot';$('export').onclick=()=>location.href='/save-stats';
+$('permission').onclick=()=>location.href='/network-permission';
+ $('video').onerror=()=>{if($('video').style.display==='block'){setTimeout(kickVideoStream,1500);post('/api/decode-error',{}).catch(()=>{});}};
+const n=(x,d=1)=>typeof x==='number'?x.toFixed(d):'—';
+async function update(){try{const s=await (await fetch('/api/status')).json();
+  liveRunning=!!s.running;
+  $('state').textContent=s.state;$('state').style.color=s.running&&s.has_frame&&s.age_ms<=1000?'var(--accent)':'#ffcf75';
+  
+  $('fps').textContent=n(s.fps_complete);$('mbps').textContent=n(s.udp_mbps,2);$('pps').textContent=n(s.udp_pps,0);
+  $('ctl').textContent=s.control_online?'在线':'离线';
+  $('age').textContent=s.has_frame?(s.age_ms>1000?'停滞 · ':'')+'更新 '+new Date(s.updated_ms).toLocaleTimeString()+(s.simulation?' · 模拟':''):s.state;
+  if(s.has_frame){
+    $('empty').hidden=true;$('video').style.display='block';
+    if(!$('video').src||!$('video').src.includes('/stream'))kickVideoStream();
+    else if((s.age_ms>2000||$('video').naturalWidth===0)&&Date.now()-lastStreamKick>5000)kickVideoStream();
+  }
+  else{$('video').style.display='none';$('empty').hidden=false;}
+  $('detail').textContent=`${s.width||'—'}×${s.height||'—'} · 完整 ${s.complete} / 残缺 ${s.incomplete} / 丢失 ${s.missing}\n${s.message}`;
+  $('regs').textContent=JSON.stringify(s.regs,null,1);
+}catch(e){$('state').textContent='本机服务中断';}finally{setTimeout(update,1000)}}update();
+const wifiSsid=$('wifi-ssid'), wifiPass=$('wifi-pass');
+try {
+  if(wifiSsid) { const saved=localStorage.getItem('vonets.ssid'); wifiSsid.value=(!saved||saved==='VONETS_2.4G_9C4C')?'VONETS_5G_804C':saved; }
+  if(wifiPass) wifiPass.value=localStorage.getItem('vonets.pass')||wifiPass.value;
+  if(window.AndroidBridge && typeof AndroidBridge.rememberNetworkProfile==='function') AndroidBridge.rememberNetworkProfile(wifiSsid.value,wifiPass.value);
+} catch(e) {}
+$('connect-board').onclick=()=>{
+  const ssid=((wifiSsid&&wifiSsid.value)||'VONETS_5G_804C').trim();
+  const pass=(wifiPass&&wifiPass.value)||'12345678';
+  try { localStorage.setItem('vonets.ssid',ssid); localStorage.setItem('vonets.pass',pass); } catch(e) {}
+  if(window.AndroidBridge && typeof AndroidBridge.connectBoard==='function') {
+    toast(AndroidBridge.connectBoard(ssid,pass));
+  } else {
+    toast('请在 Android App 内使用一键连接');
+  }
+};
+$('export-log').onclick=()=>{
+  if(window.AndroidBridge && typeof AndroidBridge.exportLogs==='function') {
+    toast(AndroidBridge.exportLogs());
+  } else {
+    toast('请在 Android App 内使用');
+  }
+};
+</script>
+</body>
+</html>

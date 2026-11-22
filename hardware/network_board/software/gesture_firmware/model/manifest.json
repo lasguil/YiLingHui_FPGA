@@ -1,0 +1,14 @@
+{
+  "weights_file": "weights_hw.bin",
+  "weights_address": "0x02000000",
+  "weights_bytes": 1099552,
+  "weights_crc32": "0x992e868b",
+  "params_file": "param_hw.bin",
+  "params_address": "0x0210d000",
+  "params_bytes": 112384,
+  "params_crc32": "0x3ff5e162",
+  "input_address": "0x02129000",
+  "input_layout": "224x224x32 C32; RGB channels 0..2",
+  "tensor_arena_address": "0x022b1000",
+  "scores_address": "0x02439000"
+}

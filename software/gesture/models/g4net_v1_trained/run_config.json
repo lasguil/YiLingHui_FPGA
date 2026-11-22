@@ -1,0 +1,152 @@
+{
+  "model_id": "g4net_v1",
+  "class_order": [
+    "palm_front",
+    "hand_back",
+    "fist",
+    "other"
+  ],
+  "class_names": [
+    "手掌正面",
+    "手背",
+    "握拳",
+    "其他"
+  ],
+  "input_chw": [
+    3,
+    144,
+    256
+  ],
+  "training_config_sha256": "e04a60d636b03ea4441d077d084b1394e71d92bf17ba763466957e4bf3af8f08",
+  "model_config_sha256": "96913fc7631b7eebbf11734323f745c465c8bcd8ead99e0eaffae4fd7bb2d3ba",
+  "index_sha256": "cf951c1d39339c9e539a712f925ceb4e268e7e3d8e676a4cfc8b7ed39ecb1a15",
+  "index_rows": 177124,
+  "data_root": "/data1/fpga_style_transfer_2026_tmp/gesture_four_class_20261015/datasets",
+  "split_seed": 20261015,
+  "split_ratio": {
+    "train": 0.9,
+    "val": 0.05,
+    "test": 0.05
+  },
+  "counts_by_split": {
+    "train": {
+      "0": 18477,
+      "1": 6201,
+      "2": 5449,
+      "3": 129285
+    },
+    "val": {
+      "0": 1027,
+      "1": 344,
+      "2": 303,
+      "3": 7182
+    },
+    "test": {
+      "0": 1027,
+      "1": 344,
+      "2": 303,
+      "3": 7182
+    }
+  },
+  "counts_by_split_and_source": {
+    "train": {
+      "coco": 18020,
+      "div2k": 730,
+      "flickr2k": 2363,
+      "hagrid": 138299
+    },
+    "val": {
+      "coco": 1021,
+      "div2k": 33,
+      "flickr2k": 129,
+      "hagrid": 7673
+    },
+    "test": {
+      "coco": 958,
+      "div2k": 37,
+      "flickr2k": 98,
+      "hagrid": 7763
+    }
+  },
+  "duplicates_dropped": 60,
+  "sampling": {
+    "batch_size": 64,
+    "class_quota": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 28
+    },
+    "configured_other_pool_quota": {
+      "external_negative": 6,
+      "hagrid_hand": 14,
+      "same_domain": 8
+    },
+    "effective_other_pool_quota": {
+      "external_negative": 8,
+      "hagrid_hand": 20
+    },
+    "empty_other_pools": [
+      "same_domain"
+    ],
+    "pool_sizes": {
+      "external_negative": 21113,
+      "hagrid_hand": 108172
+    },
+    "class_sizes": {
+      "0": 18477,
+      "1": 6201,
+      "2": 5449
+    },
+    "loss": {
+      "name": "cross_entropy",
+      "label_smoothing": 0.0
+    }
+  },
+  "augmentation": {
+    "horizontal_flip": 0.5,
+    "rotation_degrees": 10.0,
+    "zoom": [
+      0.9,
+      1.1
+    ],
+    "brightness": [
+      0.85,
+      1.15
+    ],
+    "contrast": [
+      0.85,
+      1.15
+    ],
+    "saturation": [
+      0.85,
+      1.15
+    ]
+  },
+  "optimizer": {
+    "name": "adamw",
+    "lr": 0.0003,
+    "weight_decay": 0.0001
+  },
+  "schedule": {
+    "steps_per_virtual_epoch": 500,
+    "warmup_virtual_epochs": 5,
+    "max_virtual_epochs": 80
+  },
+  "loss": {
+    "name": "cross_entropy",
+    "focal_gamma": 0.0,
+    "focal_alpha": 1.0
+  },
+  "precision": "FP32 CUDA; no AMP/TF32",
+  "eval": {
+    "every_steps": 500,
+    "batch_size": 128,
+    "num_workers": 8
+  },
+  "checkpoint": {
+    "keep_best_macro_f1": true,
+    "keep_best_deploy_tradeoff": true,
+    "target_recall_floor": 0.8
+  }
+}
